@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class EditProfileFragment extends Fragment {
 
     //UI
     private EditText edtx_name, edtx_address, edtx_phone;
+    private Button btn_save_editProfile;
 
     //String
     private String name, address, phone;
@@ -49,6 +51,7 @@ public class EditProfileFragment extends Fragment {
         edtx_address = (EditText)rootView.findViewById(R.id.edt_address);
         edtx_phone = (EditText)rootView.findViewById(R.id.edt_phone);
         edtx_name = (EditText)rootView.findViewById(R.id.edt_fullname);
+        btn_save_editProfile = (Button)rootView.findViewById(R.id.btn_save_profile);
 
         //Firebase
         userDatabase.child("userData").child("putinvladimir").addValueEventListener(new ValueEventListener() {
@@ -61,6 +64,52 @@ public class EditProfileFragment extends Fragment {
                     edtx_address.setText(editProfileData.getAddress());
                     edtx_phone.setText(editProfileData.getPhone());
                 }
+
+                btn_save_editProfile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        boolean booleanName = true,
+                                booleanAddress = true,
+                                booleanPhone = true;
+
+                        boolean cancel = false;
+                        View focusView =  null;
+
+                        edtx_name.setError(null);
+                        edtx_address.setError(null);
+                        edtx_phone.setError(null);
+
+                        name = edtx_name.getText().toString();
+                        address = edtx_address.getText().toString();
+                        phone = edtx_phone.getText().toString();
+
+                        if (TextUtils.isEmpty(name)) {
+                            edtx_name.setError("Isi Bagian Kosong Ini");
+                            focusView = edtx_name;
+                            cancel = true;
+                            booleanName = false;
+                        }
+                        if (TextUtils.isEmpty(address)) {
+                            edtx_address.setError("Isi Bagian Kosong Ini");
+                            focusView = edtx_address;
+                            cancel = true;
+                            booleanAddress = false;
+                        }
+                        if (TextUtils.isEmpty(phone)) {
+                            edtx_phone.setError("Isi Bagian Kosong Ini");
+                            focusView = edtx_phone;
+                            cancel = true;
+                            booleanPhone = false;
+                        }
+
+                        if (booleanName && booleanAddress && booleanPhone){
+                            EditProfileData editProfileData = new EditProfileData(name, address, phone);
+
+                            userDatabase.child("userData").child("putinvladimir").setValue(editProfileData);
+                            Toast.makeText(getActivity(), "Saved", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
 
             @Override
