@@ -85,9 +85,9 @@ public class EditProfileFragment extends Fragment {
         edtx_address.setError(null);
         edtx_phone.setError(null);
 
-        name = edtx_name.getText().toString().trim();
-        address = edtx_address.getText().toString().trim();
-        phone = edtx_phone.getText().toString().trim();
+        name = edtx_name.getText().toString();
+        address = edtx_address.getText().toString();
+        phone = edtx_phone.getText().toString();
 
         if (TextUtils.isEmpty(name)) {
             edtx_name.setError("Isi Bagian Kosong Ini");
