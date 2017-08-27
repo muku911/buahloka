@@ -9,10 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< HEAD
 import android.widget.Button;
-=======
->>>>>>> putin
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -35,10 +32,7 @@ public class EditProfileFragment extends Fragment {
 
     //UI
     private EditText edtx_name, edtx_address, edtx_phone;
-<<<<<<< HEAD
     private Button btn_save_editProfile;
-=======
->>>>>>> putin
 
     //String
     private String name, address, phone;
@@ -57,10 +51,7 @@ public class EditProfileFragment extends Fragment {
         edtx_address = (EditText)rootView.findViewById(R.id.edt_address);
         edtx_phone = (EditText)rootView.findViewById(R.id.edt_phone);
         edtx_name = (EditText)rootView.findViewById(R.id.edt_fullname);
-<<<<<<< HEAD
         btn_save_editProfile = (Button)rootView.findViewById(R.id.btn_save_profile);
-=======
->>>>>>> putin
 
         //Firebase
         userDatabase.child("userData").child("putinvladimir").addValueEventListener(new ValueEventListener() {
@@ -73,7 +64,6 @@ public class EditProfileFragment extends Fragment {
                     edtx_address.setText(editProfileData.getAddress());
                     edtx_phone.setText(editProfileData.getPhone());
                 }
-<<<<<<< HEAD
 
                 btn_save_editProfile.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -120,8 +110,6 @@ public class EditProfileFragment extends Fragment {
                         }
                     }
                 });
-=======
->>>>>>> putin
             }
 
             @Override
@@ -146,15 +134,14 @@ public class EditProfileFragment extends Fragment {
         edtx_address.setError(null);
         edtx_phone.setError(null);
 
-<<<<<<< HEAD
         name = edtx_name.getText().toString();
         address = edtx_address.getText().toString();
         phone = edtx_phone.getText().toString();
-=======
+
         name = edtx_name.getText().toString().trim();
         address = edtx_address.getText().toString().trim();
         phone = edtx_phone.getText().toString().trim();
->>>>>>> putin
+
 
         if (TextUtils.isEmpty(name)) {
             edtx_name.setError("Isi Bagian Kosong Ini");
