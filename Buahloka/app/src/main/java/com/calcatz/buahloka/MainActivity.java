@@ -1,9 +1,11 @@
 package com.calcatz.buahloka;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.FloatingActionButton;
@@ -15,16 +17,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private EditProfileFragment frg = new EditProfileFragment();
+    //fragment Inisialisasi
+    private EditProfileFragment editProfileFragment = new EditProfileFragment();
+    private HomeFragment homeFragment = new HomeFragment();
+
+    private FragmentManager manager = getSupportFragmentManager();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final TextView tv_bualoka = (TextView)findViewById(R.id.tx_welcome);
+        //iseng aja nambahin welcome to bualoka
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tv_bualoka.setVisibility(View.GONE);
+
+            }
+        },2*1000);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,11 +70,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
+
+
     }
 
     @Override
@@ -86,9 +108,20 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_editProfile) {
+            //EditProfileFragment editProfileFragment = new EditProfileFragment();
+            //FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.fragment_layout, editProfileFragment)
+                    .commit();
+
+        } else if (id == R.id.nav_home) {
+            //HomeFragment homeFragment = new HomeFragment();
+            //FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.fragment_layout, homeFragment)
+                    .commit();
+
 
         } else if (id == R.id.nav_slideshow) {
 
