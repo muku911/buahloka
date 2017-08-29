@@ -42,11 +42,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if(user!=null){
-            startActivity(new Intent(this,MainActivity.class));
-            finish();
-        }
-
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -95,9 +90,20 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         startActivityForResult(intent,REQUEST_SIGN_IN);
     }
 
-    private void SignOut(){
-        firebaseAuth.signOut();
-        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
+    public void SignOut(){
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth.signOut();
+
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        GoogleApiClient client = new GoogleApiClient.Builder(this).enableAutoManage(this,this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions)
+                .build();
+
+        Auth.GoogleSignInApi.signOut(client).setResultCallback(new ResultCallback<Status>() {
             @Override
             public void onResult(@NonNull Status status) {
 

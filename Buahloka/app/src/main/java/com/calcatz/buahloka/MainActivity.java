@@ -34,17 +34,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView tv_bualoka = (TextView)findViewById(R.id.tx_welcome);
-        //iseng aja nambahin welcome to bualoka
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                tv_bualoka.setVisibility(View.GONE);
-
-            }
-        },2*1000);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -103,17 +92,18 @@ public class MainActivity extends AppCompatActivity
             //EditProfileFragment editProfileFragment = new EditProfileFragment();
             //FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
-                    .replace(R.id.fragment_layout, editProfileFragment)
+                    .replace(R.id.fragment_view, editProfileFragment)
                     .commit();
 
         } else if (id == R.id.nav_home) {
             //HomeFragment homeFragment = new HomeFragment();
             //FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
-                    .replace(R.id.fragment_layout, homeFragment)
+                    .replace(R.id.fragment_view, homeFragment)
                     .commit();
-
-
+        } else if (id == R.id.nav_logout){
+            LoginActivity loginActivity = new LoginActivity();
+            loginActivity.SignOut();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
