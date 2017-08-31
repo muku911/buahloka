@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -64,15 +65,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //tab fragment
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//
-//        viewPager = (ViewPager) findViewById(R.id.viewpager);
-//        setupViewPager(viewPager);
-//
+
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -141,14 +135,27 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             LoginActivity loginActivity = new LoginActivity();
             loginActivity.SignOut();
-        } else if (id == R.id.nav_home) {
-
         } else if (id == R.id.nav_history) {
-
+            HistoryFragment historyFragment = new HistoryFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.fragment_view, historyFragment)
+                    .commit();
         } else if (id == R.id.nav_toko) {
-
+            Intent toko = new Intent(MainActivity.this, TokoActivity.class);
+            startActivity(toko);
         } else if (id == R.id.nav_about) {
-
+            AboutFragment aboutFragment = new AboutFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.fragment_view, aboutFragment)
+                    .commit();
+        } else if (id == R.id.nav_profile){
+            ProfileFragment profileFragment = new ProfileFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.fragment_view, profileFragment)
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
