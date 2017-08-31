@@ -5,7 +5,9 @@ package com.calcatz.buahloka;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.FloatingActionButton;
@@ -19,12 +21,28 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.calcatz.buahloka.R;
+import com.calcatz.buahloka.BerandaFragment;
+import com.calcatz.buahloka.KeranjangFragment;
+import com.calcatz.buahloka.FavoritFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     //fragment Inisialisasi
     private EditProfileFragment editProfileFragment = new EditProfileFragment();
-    private HomeFragment homeFragment = new HomeFragment();
+//    private BerandaFragment berandaFragment = new BerandaFragment();
+
+    //fragment tab
+//    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     private FragmentManager manager = getSupportFragmentManager();
 
@@ -45,7 +63,26 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //tab fragment
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//        viewPager = (ViewPager) findViewById(R.id.viewpager);
+//        setupViewPager(viewPager);
+//
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+        HomeFragment homeFragment = new HomeFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction()
+                .replace(R.id.fragment_view, homeFragment)
+                .commit();
     }
+
 
     @Override
     public void onBackPressed() {
@@ -96,21 +133,21 @@ public class MainActivity extends AppCompatActivity
                     .commit();
 
         } else if (id == R.id.nav_home) {
-            //HomeFragment homeFragment = new HomeFragment();
-            //FragmentManager manager = getSupportFragmentManager();
+            HomeFragment homeFragment = new HomeFragment();
+            FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
                     .replace(R.id.fragment_view, homeFragment)
                     .commit();
-        } else if (id == R.id.nav_logout){
+        } else if (id == R.id.nav_logout) {
             LoginActivity loginActivity = new LoginActivity();
             loginActivity.SignOut();
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_home) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_history) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_toko) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_about) {
 
         }
 
@@ -118,4 +155,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
