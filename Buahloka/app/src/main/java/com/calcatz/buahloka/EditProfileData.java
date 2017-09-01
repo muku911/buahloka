@@ -5,15 +5,16 @@ package com.calcatz.buahloka;
  */
 
 public class EditProfileData {
-    private String name, address, phone;
+    private String name, address, phone, saldo;
 
     public EditProfileData() {
     }
 
-    public EditProfileData(String name, String address, String phone) {
+    public EditProfileData(String name, String address, String phone, String saldo) {
         this.name = name;
         this.address = address;
         this.phone = phone;
+        this.saldo = saldo;
     }
 
     public String getName() {
@@ -38,5 +39,13 @@ public class EditProfileData {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(String saldo) {
+        this.saldo = saldo;
     }
 }

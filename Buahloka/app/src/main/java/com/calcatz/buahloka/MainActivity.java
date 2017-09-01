@@ -1,9 +1,13 @@
 package com.calcatz.buahloka;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.FloatingActionButton;
@@ -15,28 +19,42 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.calcatz.buahloka.R;
+import com.calcatz.buahloka.BerandaFragment;
+import com.calcatz.buahloka.KeranjangFragment;
+import com.calcatz.buahloka.FavoritFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private EditProfileFragment frg = new EditProfileFragment();
+    //fragment Inisialisasi
+    private EditProfileFragment editProfileFragment = new EditProfileFragment();
+//    private BerandaFragment berandaFragment = new BerandaFragment();
+
+    //fragment tab
+//    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
+    private FragmentManager manager = getSupportFragmentManager();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -46,16 +64,31 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+        HomeFragment homeFragment = new HomeFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction()
+                .replace(R.id.fragment_view, homeFragment)
+                .commit();
     }
+
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
+
+
     }
 
     @Override
@@ -86,22 +119,48 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_editProfile) {
+            //EditProfileFragment editProfileFragment = new EditProfileFragment();
+            //FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.fragment_view, editProfileFragment)
+                    .commit();
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_home) {
+            HomeFragment homeFragment = new HomeFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.fragment_view, homeFragment)
+                    .commit();
+        } else if (id == R.id.nav_logout) {
+            LoginActivity loginActivity = new LoginActivity();
+            loginActivity.SignOut();
+        } else if (id == R.id.nav_history) {
+            HistoryFragment historyFragment = new HistoryFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.fragment_view, historyFragment)
+                    .commit();
+        } else if (id == R.id.nav_toko) {
+            Intent toko = new Intent(MainActivity.this, TokoActivity.class);
+            startActivity(toko);
+        } else if (id == R.id.nav_about) {
+            AboutFragment aboutFragment = new AboutFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.fragment_view, aboutFragment)
+                    .commit();
+        } else if (id == R.id.nav_profile){
+            ProfileFragment profileFragment = new ProfileFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.fragment_view, profileFragment)
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
