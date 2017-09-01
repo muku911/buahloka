@@ -83,24 +83,25 @@ public class ListBuahActivity extends AppCompatActivity {
 
     private void dataoffline() {
         //Toko
-        daftarKebun.setName("Toko Joko");
-        daftarKebun.setPrice("100000");
+        daftarKebun = new DaftarKebun("Toko Joko","50000");
         kebunList.add(daftarKebun);
 
-        daftarKebun.setName("Toko Joni");
-        daftarKebun.setPrice("50000");
+        daftarKebun = new DaftarKebun("Toko Joko","5000000");
         kebunList.add(daftarKebun);
 
-        daftarKebun.setName("Toko Samid");
-        daftarKebun.setPrice("60000");
+        daftarKebun = new DaftarKebun("Toko Joko","250000");
         kebunList.add(daftarKebun);
 
-        daftarKebun.setName("Toko Ojan");
-        daftarKebun.setPrice("30000");
+        daftarKebun = new DaftarKebun("Toko Joko","5000");
         kebunList.add(daftarKebun);
 
-        daftarKebun.setName("Toko Putin");
-        daftarKebun.setPrice("1500000");
+        daftarKebun = new DaftarKebun("Toko Joko","500000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Toko Joko","59000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Toko Joko","58000");
         kebunList.add(daftarKebun);
     }
 
@@ -193,9 +194,11 @@ class DaftarKebunViewAdapter extends BaseAdapter {
 
         TextView tx_nameShop = (TextView)itemView.findViewById(R.id.tx_nameShop);
         TextView tx_priceItem = (TextView)itemView.findViewById(R.id.tx_price);
+        ImageView gambarBuah = (ImageView)itemView.findViewById(R.id.img_itemShop);
 
         tx_nameShop.setText(kebunList.get(i).getName());
-        tx_priceItem.setText(kebunList.get(i).getPrice());
+        tx_priceItem.setText("Rp. "+kebunList.get(i).getPrice());
+        gambarBuah.setImageResource(R.drawable.img_apel);
 
         return itemView;
     }
