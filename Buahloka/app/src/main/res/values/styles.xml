@@ -26,6 +26,12 @@
         <item name="colorPrimaryDark">@color/bualoka_theme</item>
         <item name="colorAccent">@color/bualoka_theme</item>
     </style>
+    <style name="AppTheme3" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/topbar</item>
+        <item name="colorPrimaryDark">@color/topbar</item>
+        <item name="colorAccent">@color/topbar</item>
+    </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

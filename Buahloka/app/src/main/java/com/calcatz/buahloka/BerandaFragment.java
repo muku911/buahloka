@@ -189,6 +189,7 @@ class NamabuahViewAdapter extends BaseAdapter{
         this.namaBuah = namaBuah;
     }
 
+
     @Override
     public int getCount() {
         return namaBuah.size();

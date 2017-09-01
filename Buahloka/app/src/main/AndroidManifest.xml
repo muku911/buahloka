@@ -26,7 +26,8 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".ListBuahActivity"></activity>
+        <activity android:name=".ListBuahActivity"
+                    android:theme="@style/AppTheme3"></activity>
     </application>
 
 </manifest>
