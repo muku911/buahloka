@@ -90,7 +90,7 @@ public class ListBuahActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("pilihankebun", pilihkebun);
                 bundle.putString("pilihanBuah", pilihanBuah);
-                Intent gotoListBuah = new Intent(ListBuahActivity.this, ListJualanActivity.class);
+                Intent gotoListBuah = new Intent(ListBuahActivity.this, DetailKebunActivity.class);
                 gotoListBuah.putExtras(bundle);
                 startActivity(gotoListBuah);
             }
@@ -116,6 +116,51 @@ public class ListBuahActivity extends AppCompatActivity {
         kebunList.add(daftarKebun);
 
         daftarKebun = new DaftarKebun("Kebun Joko","59000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
+        kebunList.add(daftarKebun);
+
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
         kebunList.add(daftarKebun);
 
         daftarKebun = new DaftarKebun("Kebun Joko","58000");

@@ -225,20 +225,10 @@ class NamabuahViewAdapter extends BaseAdapter{
         TextView jenisBuah = (TextView)itemView.findViewById(R.id.tv_itemBeranda);
         ImageView gambarBuah = (ImageView)itemView.findViewById(R.id.img_itemBeranda);
 
+
         jenisBuah.setText(namaBuah.get(i).getName());
 
 
-        switch (namaBuah.get(i).getName()){
-            case "Jeruk":
-                gambarBuah.setImageResource(R.drawable.img_jeruk);
-                break;
-            case "Pisang":
-                gambarBuah.setImageResource(R.drawable.img_pisang);
-                break;
-            case "Apel":
-                gambarBuah.setImageResource(R.drawable.img_apel);
-                break;
-        }
 
         return itemView;
     }

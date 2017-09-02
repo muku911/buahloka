@@ -56,6 +56,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:background="@color/items_beranda"
                 android:scaleType="fitXY"
                 android:src="#dbdddc"
                 app:srcCompat="@drawable/logo_bualoka" />
@@ -69,6 +70,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -80,7 +83,7 @@
                     android:textColor="@android:color/white" />
 
                 <TextView
-                    android:id="@+id/tx_provinsi"
+                    android:id="@+id/tx_harga"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -96,7 +99,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -116,7 +118,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/tx_promo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -129,7 +131,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -137,16 +139,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
                     android:text="Dipesan : "
                     android:textColor="@android:color/white" />
 
                 <TextView
-                    android:id="@+id/isi_pesan"
+                    android:id="@+id/tx_isiDiPesan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="100x"
                     android:textColor="@android:color/white" />
 
@@ -155,6 +154,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:orientation="horizontal"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp">
@@ -209,6 +209,61 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:weightSum="1">
+
+            <TextView
+                android:id="@+id/tx_judulDokumentasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Dokumentasi Kebun"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/line"
+                android:layout_width="50dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/lineBar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/img_doc1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/bg_textPemesanan"
+                    app:srcCompat="@drawable/logo_bualoka" />
+
+                <ImageView
+                    android:id="@+id/img_doc2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/bg_textPemesanan"
+                    app:srcCompat="@drawable/logo_bualoka" />
+
+                <ImageView
+                    android:id="@+id/img_doc3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/bg_textPemesanan"
+                    app:srcCompat="@drawable/logo_bualoka" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tx_judulInformasiKebun"
@@ -268,7 +323,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
                     android:text="12 Januari 2017"
                     android:textColor="@android:color/white" />
 
@@ -285,7 +339,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
                     android:text="Maret 2017"
                     android:textColor="@android:color/white" />
             </LinearLayout>
@@ -347,7 +400,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
                     android:text="5 cm"
                     android:textColor="@android:color/white" />
 
@@ -364,7 +416,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
                     android:text="1,4 kg"
                     android:textColor="@android:color/white" />
             </LinearLayout>
@@ -427,7 +478,7 @@
                         android:textColor="@android:color/white" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/tx_viewWarna"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
