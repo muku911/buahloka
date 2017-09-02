@@ -2,11 +2,13 @@ package com.calcatz.buahloka;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -32,7 +34,7 @@ public class ListBuahActivity extends AppCompatActivity {
 
     //UI
     private Spinner spinner_daerah, spinner_sortby;
-    private ImageButton img_logoBuah;
+    private ImageView img_logoBuah;
     private TextView tv_provinsiAsal;
     private GridView gv_daftarKebun;
 
@@ -65,6 +67,7 @@ public class ListBuahActivity extends AppCompatActivity {
                 break;
             case "Pisang":
                 img_logoBuah.setImageResource(R.drawable.img_pisang);
+
                 break;
             case "Apel":
                 img_logoBuah.setImageResource(R.drawable.img_apel);
@@ -78,6 +81,20 @@ public class ListBuahActivity extends AppCompatActivity {
             gv_daftarKebun.setAdapter(adapter);
 
         }
+
+        //Click
+        gv_daftarKebun.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String pilihkebun = kebunList.get(i).getName();
+                Bundle bundle = new Bundle();
+                bundle.putString("pilihankebun", pilihkebun);
+                bundle.putString("pilihanBuah", pilihanBuah);
+                Intent gotoListBuah = new Intent(ListBuahActivity.this, ListJualanActivity.class);
+                gotoListBuah.putExtras(bundle);
+                startActivity(gotoListBuah);
+            }
+        });
 
     }
 
@@ -109,7 +126,7 @@ public class ListBuahActivity extends AppCompatActivity {
         spinner_daerah = (Spinner)findViewById(R.id.spinnerDaerah);
         spinner_sortby = (Spinner)findViewById(R.id.spinnerSortby);
 
-        img_logoBuah = (ImageButton)findViewById(R.id.img_logoBuah);
+        img_logoBuah = (ImageView)findViewById(R.id.img_logoBuah);
 
         tv_provinsiAsal = (TextView)findViewById(R.id.tx_provinsi);
 

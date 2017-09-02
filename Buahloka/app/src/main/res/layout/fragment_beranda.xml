@@ -64,8 +64,7 @@
                 <GridView
                     android:id="@+id/gv_jenisBuah"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:columnWidth="80dp"
+                    android:layout_height="485dp"
                     android:numColumns="3"
                     android:padding="5dp" />
             </LinearLayout>

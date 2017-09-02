@@ -94,6 +94,10 @@ public class BerandaFragment extends Fragment{
         databaseProfinsi.child("Region").child("Provinsi").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                if (nameprofinsi != null)
+                    nameprofinsi.clear();
+                if (daftarProfinsi != null)
+                    daftarProfinsi.clear();
 
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     namaProvinsi = snapshot.getValue(NamaProvinsi.class);
@@ -117,6 +121,10 @@ public class BerandaFragment extends Fragment{
         databaseBuah.child("Buah").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (namebuah != null)
+                    namebuah.clear();
+
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     namaBuah = snapshot.getValue(NamaBuah.class);
                     namebuah.add(namaBuah);
@@ -218,6 +226,7 @@ class NamabuahViewAdapter extends BaseAdapter{
         ImageView gambarBuah = (ImageView)itemView.findViewById(R.id.img_itemBeranda);
 
         jenisBuah.setText(namaBuah.get(i).getName());
+
 
         switch (namaBuah.get(i).getName()){
             case "Jeruk":
