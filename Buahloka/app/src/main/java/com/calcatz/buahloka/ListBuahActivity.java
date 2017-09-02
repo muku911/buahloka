@@ -100,25 +100,25 @@ public class ListBuahActivity extends AppCompatActivity {
 
     private void dataoffline() {
         //Toko
-        daftarKebun = new DaftarKebun("Toko Joko","50000");
+        daftarKebun = new DaftarKebun("Kebun Joko","50000");
         kebunList.add(daftarKebun);
 
-        daftarKebun = new DaftarKebun("Toko Joko","5000000");
+        daftarKebun = new DaftarKebun("Kebun Joko","5000000");
         kebunList.add(daftarKebun);
 
-        daftarKebun = new DaftarKebun("Toko Joko","250000");
+        daftarKebun = new DaftarKebun("Kebun Joko","250000");
         kebunList.add(daftarKebun);
 
-        daftarKebun = new DaftarKebun("Toko Joko","5000");
+        daftarKebun = new DaftarKebun("Kebun Joko","5000");
         kebunList.add(daftarKebun);
 
-        daftarKebun = new DaftarKebun("Toko Joko","500000");
+        daftarKebun = new DaftarKebun("Kebun Joko","500000");
         kebunList.add(daftarKebun);
 
-        daftarKebun = new DaftarKebun("Toko Joko","59000");
+        daftarKebun = new DaftarKebun("Kebun Joko","59000");
         kebunList.add(daftarKebun);
 
-        daftarKebun = new DaftarKebun("Toko Joko","58000");
+        daftarKebun = new DaftarKebun("Kebun Joko","58000");
         kebunList.add(daftarKebun);
     }
 
