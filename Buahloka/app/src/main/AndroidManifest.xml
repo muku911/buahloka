@@ -32,7 +32,10 @@
         <activity
             android:name=".ListJualanActivity"
             android:theme="@style/AppTheme3" />
-        <activity android:name=".DetailKebunActivity"
+        <activity
+            android:name=".DetailKebunActivity"
+            android:theme="@style/AppTheme3" />
+        <activity android:name=".ReviewActivity"
             android:theme="@style/AppTheme3"></activity>
     </application>
 
