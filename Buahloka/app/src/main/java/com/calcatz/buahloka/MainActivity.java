@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity
 
     //fragment Inisialisasi
     private EditProfileFragment editProfileFragment = new EditProfileFragment();
-//    private BerandaFragment berandaFragment = new BerandaFragment();
+    private HistoryFragment historyFragment = new HistoryFragment();
+    private ProfileFragment profileFragment = new ProfileFragment();
+    private AboutFragment aboutFragment = new AboutFragment();
 
-    //fragment tab
-//    private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -64,8 +63,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -136,8 +133,8 @@ public class MainActivity extends AppCompatActivity
             LoginActivity loginActivity = new LoginActivity();
             loginActivity.SignOut();
         } else if (id == R.id.nav_history) {
-            HistoryFragment historyFragment = new HistoryFragment();
-            FragmentManager manager = getSupportFragmentManager();
+//            HistoryFragment historyFragment = new HistoryFragment();
+//            FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
                     .replace(R.id.fragment_view, historyFragment)
                     .commit();
@@ -145,14 +142,14 @@ public class MainActivity extends AppCompatActivity
             Intent toko = new Intent(MainActivity.this, TokoActivity.class);
             startActivity(toko);
         } else if (id == R.id.nav_about) {
-            AboutFragment aboutFragment = new AboutFragment();
-            FragmentManager manager = getSupportFragmentManager();
+//            AboutFragment aboutFragment = new AboutFragment();
+//            FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
                     .replace(R.id.fragment_view, aboutFragment)
                     .commit();
         } else if (id == R.id.nav_profile){
-            ProfileFragment profileFragment = new ProfileFragment();
-            FragmentManager manager = getSupportFragmentManager();
+//            ProfileFragment profileFragment = new ProfileFragment();
+//            FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
                     .replace(R.id.fragment_view, profileFragment)
                     .commit();
