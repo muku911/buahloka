@@ -93,8 +93,11 @@ public class ListBuahActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String pilihkebun = kebunList.get(i).getName();
+                String pilihankKebun = hargaList.get(i).getId();
+                //Toast.makeText(ListBuahActivity.this, "Welcome " + pilihkebun, Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
                 bundle.putString("pilihankebun", pilihkebun);
+                bundle.putString("idkebun", pilihankKebun);
                 bundle.putString("pilihanBuah", pilihanBuah);
                 Intent gotoListBuah = new Intent(ListBuahActivity.this, DetailKebunActivity.class);
                 gotoListBuah.putExtras(bundle);
@@ -175,10 +178,11 @@ public class ListBuahActivity extends AppCompatActivity {
 
                                         long temp = snapshot.child("id_buah").getValue(long.class);
                                         long idtoLong = Long.parseLong(id);
-                                        //Toast.makeText(ListBuahActivity.this, "Welcome " + idtoLong + temp, Toast.LENGTH_SHORT).show();
+
                                         if (temp == idtoLong) {
                                             hargaKilo = snapshot.child("harga_kilo").getValue(long.class);
-                                            hargaBarang = new HargaBarang(hargaKilo);
+                                            String idBarang = snapshot.child("id").getValue(String.class);
+                                            hargaBarang = new HargaBarang(hargaKilo,idBarang);
                                             hargaList.add(hargaBarang);
                                             final String tempToko = snapshot.child("id_toko").getValue(String.class);
                                             String tempKebun = snapshot.child("id_kebun").getValue(String.class);
@@ -262,13 +266,15 @@ public class ListBuahActivity extends AppCompatActivity {
 }
 
 class HargaBarang{
-    long harga_kilo;
+    private long harga_kilo;
+    private String id;
 
     public HargaBarang() {
     }
 
-    public HargaBarang(long harga_kilo) {
+    public HargaBarang(long harga_kilo, String id) {
         this.harga_kilo = harga_kilo;
+        this.id = id;
     }
 
     public long getHarga_kilo() {
@@ -277,6 +283,14 @@ class HargaBarang{
 
     public void setHarga_kilo(long harga_kilo) {
         this.harga_kilo = harga_kilo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
 
