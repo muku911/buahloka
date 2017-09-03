@@ -88,6 +88,15 @@ public class BerandaFragment extends Fragment{
                     int tempRegional = spinner_provinsi.getSelectedItemPosition();
                     regional = daftarProfinsiID.get(tempRegional);
                     Bundle bundle = new Bundle();
+                    String id = "";
+                    for (int noob = 0; noob < namebuah.size() ; noob++){
+                        String temp = namebuah.get(noob).getName();
+                        if (temp.equals(jenisBuah)){
+                            noob++;
+                            id = ""+noob;
+                        }
+                    }
+                    bundle.putString("id", id);
                     bundle.putString("jenisbuah", jenisBuah);
                     bundle.putString("pilihanprovinsi", pilihanProvinsi);
                     bundle.putString("regional", regional);
