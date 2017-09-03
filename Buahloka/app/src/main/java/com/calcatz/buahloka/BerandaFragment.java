@@ -16,6 +16,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +41,7 @@ public class BerandaFragment extends Fragment{
     //UI
     private Spinner spinner_provinsi;
     private GridView gv_buah;
+    private TextView tx_provinsiAsal_beranda;
 
     //Data
     private NamaProvinsi namaProvinsi ;
@@ -51,8 +53,9 @@ public class BerandaFragment extends Fragment{
     private NamabuahViewAdapter adapter;
 
     private List<String> daftarProfinsi = new ArrayList<String>();
+    private List<String> daftarProfinsiID = new ArrayList<String>();
 
-    private String jenisBuah, pilihanProvinsi;
+    private String jenisBuah, pilihanProvinsi, regional;
 
 
     public BerandaFragment() {
@@ -73,19 +76,25 @@ public class BerandaFragment extends Fragment{
         //INIT UI
         spinner_provinsi = (Spinner)rootView.findViewById(R.id.spinner_provinsiAsal_beranda);
         gv_buah = (GridView)rootView.findViewById(R.id.gv_jenisBuah);
+        tx_provinsiAsal_beranda = (TextView) rootView.findViewById(R.id.tx_provinsiAsal_beranda);
 
         //Click
         gv_buah.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                jenisBuah = namebuah.get(i).getName();
-                pilihanProvinsi = spinner_provinsi.getSelectedItem().toString();
-                Bundle bundle = new Bundle();
-                bundle.putString("jenisbuah", jenisBuah);
-                bundle.putString("pilihanprovinsi", pilihanProvinsi);
-                Intent gotoListBuah = new Intent(getActivity(), ListBuahActivity.class);
-                gotoListBuah.putExtras(bundle);
-                startActivity(gotoListBuah);
+                if ( spinner_provinsi.getSelectedItemPosition() != 0){
+                    jenisBuah = namebuah.get(i).getName();
+                    pilihanProvinsi = spinner_provinsi.getSelectedItem().toString();
+                    int tempRegional = spinner_provinsi.getSelectedItemPosition();
+                    regional = daftarProfinsiID.get(tempRegional);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("jenisbuah", jenisBuah);
+                    bundle.putString("pilihanprovinsi", pilihanProvinsi);
+                    bundle.putString("regional", regional);
+                    Intent gotoListBuah = new Intent(getActivity(), ListBuahActivity.class);
+                    gotoListBuah.putExtras(bundle);
+                    startActivity(gotoListBuah);
+                }else Toast.makeText(getActivity(), "Pilih Provinsi", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -100,8 +109,13 @@ public class BerandaFragment extends Fragment{
                     daftarProfinsi.clear();
 
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+
                     namaProvinsi = snapshot.getValue(NamaProvinsi.class);
                     nameprofinsi.add(namaProvinsi);
+
+                    String id = snapshot.getKey();
+                    daftarProfinsiID.add(id);
+
                 }
                 for (int a = 0 ; a < nameprofinsi.size() ; a++){
                     String b = nameprofinsi.get(a).getName();
@@ -109,6 +123,7 @@ public class BerandaFragment extends Fragment{
                 }
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item,daftarProfinsi);
                 spinner_provinsi.setAdapter(adapter2);
+
 
             }
 
@@ -225,20 +240,10 @@ class NamabuahViewAdapter extends BaseAdapter{
         TextView jenisBuah = (TextView)itemView.findViewById(R.id.tv_itemBeranda);
         ImageView gambarBuah = (ImageView)itemView.findViewById(R.id.img_itemBeranda);
 
+
         jenisBuah.setText(namaBuah.get(i).getName());
 
 
-        switch (namaBuah.get(i).getName()){
-            case "Jeruk":
-                gambarBuah.setImageResource(R.drawable.img_jeruk);
-                break;
-            case "Pisang":
-                gambarBuah.setImageResource(R.drawable.img_pisang);
-                break;
-            case "Apel":
-                gambarBuah.setImageResource(R.drawable.img_apel);
-                break;
-        }
 
         return itemView;
     }

@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/items_beranda"
+    tools:context="com.calcatz.buahloka.DetailKebunActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="68dp"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/topbartipu" />
+
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:background="#7ec31c"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tx_judulKebun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/bg_textPemesanan"
+                android:text="Kebun Joko"
+                android:textAlignment="center"
+                android:textColor="@android:color/white" />
+
+            <ImageView
+                android:id="@+id/img_logoBuah"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/items_beranda"
+                android:scaleType="fitXY"
+                android:src="#dbdddc"
+                app:srcCompat="@drawable/logo_bualoka" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/judul1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Harga :"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_harga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Rp. 10.000/Kg"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/judul2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Daerah : "
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/tx_tersedia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5 (Lima) Ton"
+                        android:textColor="@android:color/white" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tx_promo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/bg_textPemesanan"
+                    android:text="Rp. 9000/Kg Pemesanan > 1 Ton"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/judul3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Dipesan : "
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiDiPesan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100x"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp">
+
+                <TextView
+                    android:id="@+id/judul4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Rating : "
+                    android:textColor="@android:color/white" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:rating="3.3" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_buyItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="buyButton"
+                android:text="Beli" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="350dp"
+        android:layout_height="325dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:background="#7ec31c"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
+        app:layout_constraintVertical_bias="0.49">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/tx_judulDokumentasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Dokumentasi Kebun"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/line"
+                android:layout_width="50dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/lineBar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/img_doc1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/bg_textPemesanan"
+                    app:srcCompat="@drawable/logo_bualoka" />
+
+                <ImageView
+                    android:id="@+id/img_doc2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/bg_textPemesanan"
+                    app:srcCompat="@drawable/logo_bualoka" />
+
+                <ImageView
+                    android:id="@+id/img_doc3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/bg_textPemesanan"
+                    app:srcCompat="@drawable/logo_bualoka" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tx_judulInformasiKebun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Informasi Kebun"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/line1"
+                android:layout_width="50dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/lineBar" />
+
+
+            <LinearLayout
+                android:id="@+id/informasiKebun"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tx_lokasiKebun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lokasi Kebun : "
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiLokasiKebun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Desa Simpang Tiga, Kec. Simpang Hilir, Kab. Bengkayang, Kalimantan Barat"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_tanggalPanenLast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Tanggal Panen Terakhir :"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiTanggalPanenLast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="12 Januari 2017"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_nextPanen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Bulan Panen akan Datang :"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiNextPanen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Maret 2017"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tx_judulInformasiBuah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Informasi Buah"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/line2"
+                android:layout_width="50dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/lineBar" />
+
+            <LinearLayout
+                android:id="@+id/informasiBuah"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tx_panjangAVG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Panjang Rata-Rata 1 Buah : "
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiPanjangAVG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="18,4 cm"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_lebarAVG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Lebar Rata-Rata 1 Buah :"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiLebarAVG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="5 cm"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_beratAVG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Berat Rata-Rata 1 buah :"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiBeratAVG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="1,4 kg"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tx_judulInformasiWarna"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Informasi Warna"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/line3"
+                android:layout_width="50dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/lineBar" />
+
+            <LinearLayout
+                android:id="@+id/informasiWarna"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tx_lastTestWarna"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tanggal Uji Terakhir : "
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiLastTestWarna"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="14 Januari 2016"
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tx_isiCodeWarna"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="C=7   M=30   Y=71   K=0"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/tx_viewWarna"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:background="@color/colorTest" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tx_judulInformasiKematangan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Informasi Kematangan"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/line4"
+                android:layout_width="50dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/lineBar" />
+
+            <LinearLayout
+                android:id="@+id/informasiKematangan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tx_lastTestKematangan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tanggal Uji Terakhir : "
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiLastTestKematangan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="14 Januari 2016"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_kadarAvgGasEtilen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kadar Rata-Rata Gas Etilen : "
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiKadarAvgGasEtilen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="120 ppm/buah"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_persenKematangan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Persentasse Kematangan : "
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiPersenKematangan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="50% (Sedang)"
+                    android:textColor="@android:color/white" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tx_judulInformasiKandungan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Informasi Kandungan Bahan Kimia Dan Bakteri"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/line5"
+                android:layout_width="50dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/lineBar" />
+
+            <LinearLayout
+                android:id="@+id/informasiKandungan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tx_lastTestKandungan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tanggal Uji Terakhir : "
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiLastTestKandungan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="14 Januari 2016"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_kandungan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="COD Recorded : "
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiKandungan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="1 mg/L"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_statusKandungan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Status Penambahan Bahan Kimia : "
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiStatusKandungan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Aman"
+                    android:textColor="@android:color/white" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tx_judulInformasiKadaluarsa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Informasi Kadaluarsa"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/line6"
+                android:layout_width="50dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/lineBar" />
+
+            <LinearLayout
+                android:id="@+id/informasiKadaluarsa"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tx_kadaluarsa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kemampuan Batas Pendinginan : "
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tx_isiKadaluarsa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Januari - April 2017"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tx_judulInformasiManfaat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Informasi Manfaat"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/line7"
+                android:layout_width="50dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/lineBar" />
+
+            <LinearLayout
+                android:id="@+id/informasiManfaat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tx_isiManfaat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Meningkatkan kekabalan tubuh"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:onClick="reviewButton"
+                android:text="Review Buah" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

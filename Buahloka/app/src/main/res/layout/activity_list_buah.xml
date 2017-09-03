@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_layoutBeranda"
+    android:background="@color/items_beranda"
     tools:context="com.calcatz.buahloka.ListBuahActivity">
 
     <ImageView
@@ -87,7 +87,7 @@
 
                 <Spinner
                     android:id="@+id/spinnerDaerah"
-                    android:layout_width="100dp"
+                    android:layout_width="160dp"
                     android:layout_height="25dp"
                     android:background="#dbdddc" />
 
@@ -145,8 +145,8 @@
         app:layout_constraintVertical_bias="0.5">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:weightSum="1">
 
@@ -154,14 +154,21 @@
                 android:id="@+id/tx_tersedia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
                 android:text="Tersedia"
                 android:textColor="@android:color/white"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/line1"
+                android:layout_width="50dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/lineBar" />
 
             <GridView
                 android:id="@+id/gv_data"
