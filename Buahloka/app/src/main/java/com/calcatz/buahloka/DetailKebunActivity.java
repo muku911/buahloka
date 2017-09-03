@@ -1,7 +1,9 @@
 package com.calcatz.buahloka;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -51,7 +53,19 @@ public class DetailKebunActivity extends AppCompatActivity {
         ratingAVG();
 
 
+    }
 
+    public void buyButton(View view){
+
+    }
+
+    public void reviewButton(View view){
+        Bundle bundle = new Bundle();
+        bundle.putString("pilihankebun", pilihanKebun);
+        bundle.putString("pilihanBuah", pilihanBuah);
+        Intent gotoListBuah = new Intent(DetailKebunActivity.this, ReviewActivity.class);
+        gotoListBuah.putExtras(bundle);
+        startActivity(gotoListBuah);
     }
 
     private void ratingAVG() {
