@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,19 +36,22 @@ public class ListBuahActivity extends AppCompatActivity {
     //UI
     private Spinner spinner_daerah, spinner_sortby;
     private ImageView img_logoBuah;
-    private TextView tv_provinsiAsal;
+    private TextView tv_provinsiAsal,tx_tersedia;
     private GridView gv_daftarKebun;
 
     //Data
-    private String pilihanBuah, pilihanProvinsi;
+    private String pilihanBuah, pilihanProvinsi, regional;
+    private boolean find;
 
     private DaftarKebun daftarKebun;
-    private NamaProvinsi namaProvinsi;
+    private DaftarDaerah daftarDaerah;
 
     private List<DaftarKebun> kebunList = new ArrayList<DaftarKebun>();
-    private List<NamaProvinsi> nameprofinsi = new ArrayList<NamaProvinsi>();
+    private List<DaftarDaerah> namaDaerah = new ArrayList<DaftarDaerah>();
+    private List<String> listdaftarDaerah = new ArrayList<String>();
 
     private DaftarKebunViewAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,8 @@ public class ListBuahActivity extends AppCompatActivity {
         headerView();
         init();
         dataoffline();
+
+        //tx_tersedia.setText(regional);
 
         //Action
         tv_provinsiAsal.setText(pilihanProvinsi);
@@ -95,6 +101,41 @@ public class ListBuahActivity extends AppCompatActivity {
                 startActivity(gotoListBuah);
             }
         });
+
+
+        databaseDaerah.child("Region").child("Provinsi").child(regional).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (namaDaerah != null)
+                    namaDaerah.clear();
+                if (listdaftarDaerah != null)
+                    listdaftarDaerah.clear();
+
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    String temp = snapshot.child("name").getValue(String.class);
+                    if (temp != null)
+                        listdaftarDaerah.add(temp);
+                    //daftarDaerah = snapshot.child("name").getValue(DaftarDaerah.class);
+                    //namaDaerah.add(daftarDaerah);
+
+                }
+                for (int a = 0; a < namaDaerah.size(); a++) {
+                    String b = namaDaerah.get(a).getName();
+                    listdaftarDaerah.add(b);
+                }
+
+                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(ListBuahActivity.this, android.R.layout.simple_spinner_dropdown_item, listdaftarDaerah);
+                spinner_daerah.setAdapter(adapter2);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 
@@ -170,7 +211,7 @@ public class ListBuahActivity extends AppCompatActivity {
     private void init() {
         spinner_daerah = (Spinner)findViewById(R.id.spinnerDaerah);
         spinner_sortby = (Spinner)findViewById(R.id.spinnerSortby);
-
+        tx_tersedia =  (TextView)findViewById(R.id.tx_tersedia);
         img_logoBuah = (ImageView)findViewById(R.id.img_logoBuah);
 
         tv_provinsiAsal = (TextView)findViewById(R.id.tx_provinsi);
@@ -184,6 +225,7 @@ public class ListBuahActivity extends AppCompatActivity {
         bundle = getIntent().getExtras();
         pilihanBuah = bundle.getString("jenisbuah");
         pilihanProvinsi = bundle.getString("pilihanprovinsi");
+        regional  = bundle.getString("regional");
 
 
     }
@@ -263,5 +305,24 @@ class DaftarKebunViewAdapter extends BaseAdapter {
         gambarBuah.setImageResource(R.drawable.img_apel);
 
         return itemView;
+    }
+}
+
+class DaftarDaerah{
+    private String name;
+
+    public DaftarDaerah(String name) {
+        this.name = name;
+    }
+
+    public DaftarDaerah() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -87,7 +87,7 @@
 
                 <Spinner
                     android:id="@+id/spinnerDaerah"
-                    android:layout_width="100dp"
+                    android:layout_width="160dp"
                     android:layout_height="25dp"
                     android:background="#dbdddc" />
 
@@ -165,6 +165,7 @@
                 android:id="@+id/line1"
                 android:layout_width="50dp"
                 android:layout_height="2dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@color/lineBar" />
