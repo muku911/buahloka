@@ -12,12 +12,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +31,8 @@ public class ListBuahActivity extends AppCompatActivity {
     //Firebase
     private FirebaseDatabase mydatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseDaerah = mydatabase.getReference();
+    private DatabaseReference databaseKebun = mydatabase.getReference();
+    private DatabaseReference databaseProvinsi  = mydatabase.getReference();
 
     //UI
     private Spinner spinner_daerah, spinner_sortby;
@@ -40,13 +41,18 @@ public class ListBuahActivity extends AppCompatActivity {
     private GridView gv_daftarKebun;
 
     //Data
-    private String pilihanBuah, pilihanProvinsi, regional;
-    private boolean find;
+    private String pilihanBuah, pilihanProvinsi, regional, id, tempSpiner;
+    private boolean find, show;
+
+    private String namaKebun;
+    private long hargaKilo;
 
     private DaftarKebun daftarKebun;
+    private HargaBarang hargaBarang ;
     private DaftarDaerah daftarDaerah;
 
     private List<DaftarKebun> kebunList = new ArrayList<DaftarKebun>();
+    private List<HargaBarang> hargaList = new ArrayList<HargaBarang>();
     private List<DaftarDaerah> namaDaerah = new ArrayList<DaftarDaerah>();
     private List<String> listdaftarDaerah = new ArrayList<String>();
 
@@ -60,9 +66,9 @@ public class ListBuahActivity extends AppCompatActivity {
 
         headerView();
         init();
-        dataoffline();
 
-        //tx_tersedia.setText(regional);
+        //test
+        //tx_tersedia.setText(id);
 
         //Action
         tv_provinsiAsal.setText(pilihanProvinsi);
@@ -80,21 +86,18 @@ public class ListBuahActivity extends AppCompatActivity {
                 break;
         }
 
-        int sum = kebunList.size();
 
-        for (int a = 0 ; a < sum ; a++){
-            adapter = new DaftarKebunViewAdapter(ListBuahActivity.this,kebunList);
-            gv_daftarKebun.setAdapter(adapter);
-
-        }
 
         //Click
         gv_daftarKebun.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String pilihkebun = kebunList.get(i).getName();
+                String pilihankKebun = hargaList.get(i).getId();
+                //Toast.makeText(ListBuahActivity.this, "Welcome " + pilihkebun, Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
                 bundle.putString("pilihankebun", pilihkebun);
+                bundle.putString("idkebun", pilihankKebun);
                 bundle.putString("pilihanBuah", pilihanBuah);
                 Intent gotoListBuah = new Intent(ListBuahActivity.this, DetailKebunActivity.class);
                 gotoListBuah.putExtras(bundle);
@@ -102,6 +105,7 @@ public class ListBuahActivity extends AppCompatActivity {
             }
         });
 
+        //firebase Data regional
 
         databaseDaerah.child("Region").child("Provinsi").child(regional).addValueEventListener(new ValueEventListener() {
             @Override
@@ -136,76 +140,105 @@ public class ListBuahActivity extends AppCompatActivity {
             }
         });
 
+        //firebaseCheckIDbuah
+        spinner_daerah.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-    }
+                tempSpiner = adapterView.getSelectedItem().toString();
 
-    private void dataoffline() {
-        //Toko
-        daftarKebun = new DaftarKebun("Kebun Joko","50000");
-        kebunList.add(daftarKebun);
+                show = false;
 
-        daftarKebun = new DaftarKebun("Kebun Joko","5000000");
-        kebunList.add(daftarKebun);
+                if (kebunList != null)
+                    kebunList.clear();
+                if (hargaList != null)
+                    hargaList.clear();
 
-        daftarKebun = new DaftarKebun("Kebun Joko","250000");
-        kebunList.add(daftarKebun);
+                adapter = new DaftarKebunViewAdapter(ListBuahActivity.this, kebunList, hargaList);
+                gv_daftarKebun.setAdapter(adapter);
 
-        daftarKebun = new DaftarKebun("Kebun Joko","5000");
-        kebunList.add(daftarKebun);
+                databaseProvinsi.child("Barang").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
 
-        daftarKebun = new DaftarKebun("Kebun Joko","500000");
-        kebunList.add(daftarKebun);
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            String tempSubdic = snapshot.child("city").getValue(String.class);
+                            if (tempSubdic.equals(tempSpiner)) show = true;
+                        }
 
-        daftarKebun = new DaftarKebun("Kebun Joko","59000");
-        kebunList.add(daftarKebun);
+                        if (show) {
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
+                            databaseDaerah.child("Barang").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
+                                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
+                                        long temp = snapshot.child("id_buah").getValue(long.class);
+                                        long idtoLong = Long.parseLong(id);
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
+                                        if (temp == idtoLong) {
+                                            hargaKilo = snapshot.child("harga_kilo").getValue(long.class);
+                                            String idBarang = snapshot.child("id").getValue(String.class);
+                                            hargaBarang = new HargaBarang(hargaKilo,idBarang);
+                                            hargaList.add(hargaBarang);
+                                            final String tempToko = snapshot.child("id_toko").getValue(String.class);
+                                            String tempKebun = snapshot.child("id_kebun").getValue(String.class);
+                                            databaseKebun.child("Toko").child(tempToko).child("Kebun").child(tempKebun).addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(DataSnapshot dataSnapshot) {
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
+                                                    namaKebun = dataSnapshot.child("name").getValue(String.class);
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
+                                                    daftarKebun = new DaftarKebun(namaKebun);
+                                                    kebunList.add(daftarKebun);
+                                                    int sum = kebunList.size();
+                                                    for (int a = 0; a < sum; a++) {
+                                                        adapter = new DaftarKebunViewAdapter(ListBuahActivity.this, kebunList, hargaList);
+                                                        gv_daftarKebun.setAdapter(adapter);
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
+                                                    }
+                                                }
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
+                                                @Override
+                                                public void onCancelled(DatabaseError databaseError) {
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
+                                                }
+                                            });
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
+                                        }
+                                    }
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
+                                }
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
 
-        daftarKebun = new DaftarKebun("Kebun Joko","58000");
-        kebunList.add(daftarKebun);
+                                }
+                            });
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
     }
 
     private void init() {
@@ -226,22 +259,49 @@ public class ListBuahActivity extends AppCompatActivity {
         pilihanBuah = bundle.getString("jenisbuah");
         pilihanProvinsi = bundle.getString("pilihanprovinsi");
         regional  = bundle.getString("regional");
+        id = bundle.getString("id");
 
 
     }
 }
 
+class HargaBarang{
+    private long harga_kilo;
+    private String id;
 
+    public HargaBarang() {
+    }
+
+    public HargaBarang(long harga_kilo, String id) {
+        this.harga_kilo = harga_kilo;
+        this.id = id;
+    }
+
+    public long getHarga_kilo() {
+        return harga_kilo;
+    }
+
+    public void setHarga_kilo(long harga_kilo) {
+        this.harga_kilo = harga_kilo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+}
 
 class DaftarKebun{
-    String name, price;
+    String name;
 
     public DaftarKebun() {
     }
 
-    public DaftarKebun(String name, String price) {
+    public DaftarKebun(String name) {
         this.name = name;
-        this.price = price;
     }
 
     public String getName() {
@@ -251,14 +311,6 @@ class DaftarKebun{
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
 }
 
 class DaftarKebunViewAdapter extends BaseAdapter {
@@ -267,13 +319,16 @@ class DaftarKebunViewAdapter extends BaseAdapter {
     private Activity activity;
 
     private List<DaftarKebun> kebunList;
+    private List<HargaBarang> hargaList;
+
 
     private ArrayAdapter<DaftarKebun> arraylist;
     private LayoutInflater inflater;
 
-    public DaftarKebunViewAdapter(Activity activity, List<DaftarKebun> kebunList) {
+    public DaftarKebunViewAdapter(Activity activity, List<DaftarKebun> kebunList, List<HargaBarang> hargaList) {
         this.activity = activity;
         this.kebunList = kebunList;
+        this.hargaList = hargaList;
     }
 
     @Override
@@ -300,8 +355,10 @@ class DaftarKebunViewAdapter extends BaseAdapter {
         TextView tx_priceItem = (TextView)itemView.findViewById(R.id.tx_price);
         ImageView gambarBuah = (ImageView)itemView.findViewById(R.id.img_itemShop);
 
+
+        tx_priceItem.setText("Rp. "+ hargaList.get(i).getHarga_kilo());
+
         tx_nameShop.setText(kebunList.get(i).getName());
-        tx_priceItem.setText("Rp. "+kebunList.get(i).getPrice());
         gambarBuah.setImageResource(R.drawable.img_apel);
 
         return itemView;
