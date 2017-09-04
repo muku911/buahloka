@@ -28,6 +28,7 @@ public class DetailKebunActivity extends AppCompatActivity {
     //Data
     private DetailData detailData;
 
+
     private Rating ratting;
     private List<Rating> ratingList = new ArrayList<Rating>();
 
@@ -50,6 +51,7 @@ public class DetailKebunActivity extends AppCompatActivity {
 
     //String
     private String pilihanKebun, pilihanBuah, idKebun;
+    private String ratingAVG, id_barang;
 
     //Data
 
@@ -74,6 +76,8 @@ public class DetailKebunActivity extends AppCompatActivity {
 
                 editData();
 
+
+
                 databaseRating.child("Toko").child(detailData.getId_toko()).child("Comment").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -83,11 +87,28 @@ public class DetailKebunActivity extends AppCompatActivity {
                             ratting = snapshot.getValue(Rating.class);
                             String temp = snapshot.child("id_barang").getValue(String.class);
                             if (temp.equals(detailData.getId())){
-                                Toast.makeText(DetailKebunActivity.this, "Welcome " + ratting.getRating(), Toast.LENGTH_SHORT).show();
+                                id_barang = temp;
+
                                 ratingList.add(ratting);
                             }
                         }
                         ratingAVG();
+                        btn_review.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("pilihanKebun", pilihanKebun);
+                                bundle.putString("pilihanBuah", pilihanBuah);
+                                bundle.putString("idKebun", idKebun);
+                                bundle.putString("ratingAVG", ratingAVG);
+                                bundle.putString("id_barang", id_barang);
+                                bundle.putString("id_toko", detailData.getId_toko());
+                                bundle.putString("alamat", detailData.getAlamat());
+                                Intent gotoListBuah = new Intent(DetailKebunActivity.this, ReviewActivity.class);
+                                gotoListBuah.putExtras(bundle);
+                                startActivity(gotoListBuah);
+                            }
+                        });
                     }
 
                     @Override
@@ -142,17 +163,6 @@ public class DetailKebunActivity extends AppCompatActivity {
 
     }
 
-    public void reviewButton(View view){
-        Bundle bundle = new Bundle();
-        bundle.putString("pilihankebun", pilihanKebun);
-        bundle.putString("pilihanBuah", pilihanBuah);
-        Intent gotoListBuah = new Intent(DetailKebunActivity.this, ReviewActivity.class);
-        gotoListBuah.putExtras(bundle);
-        startActivity(gotoListBuah);
-
-
-    }
-
     private void ratingAVG() {
         float b = 0;
         int sum = ratingList.size();
@@ -160,6 +170,7 @@ public class DetailKebunActivity extends AppCompatActivity {
             b = b + ratingList.get(a).getRating();
         }
         float c = b/sum;
+        ratingAVG = "" + c;
         rating.setRating(c);
         tx_isiDiPesan.setText(""+sum+"x");
     }
@@ -177,11 +188,11 @@ public class DetailKebunActivity extends AppCompatActivity {
 
     private void headerView() {
         //LoadBundle
-        Bundle bundle;
-        bundle = getIntent().getExtras();
-        pilihanKebun = bundle.getString("pilihankebun");
-        pilihanBuah = bundle.getString("pilihanBuah");
-        idKebun = bundle.getString("idkebun");
+        Bundle bundlee;
+        bundlee = getIntent().getExtras();
+        pilihanKebun = bundlee.getString("pilihankebun");
+        pilihanBuah = bundlee.getString("pilihanBuah");
+        idKebun = bundlee.getString("idkebun");
 
 
         tx_judulKebun.setText(pilihanKebun);

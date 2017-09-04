@@ -177,7 +177,6 @@
                 android:id="@+id/btn_buyItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="buyButton"
                 android:text="Beli" />
 
         </LinearLayout>
@@ -711,7 +710,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:onClick="reviewButton"
                 android:text="Review Buah" />
 
         </LinearLayout>

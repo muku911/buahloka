@@ -93,7 +93,7 @@
                     android:textColor="@android:color/white" />
 
                 <TextView
-                    android:id="@+id/tx_isiKategori"
+                    android:id="@+id/tx_nama"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kebun Bukaloa"
@@ -179,6 +179,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:paddingLeft="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
