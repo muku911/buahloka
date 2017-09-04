@@ -265,34 +265,9 @@ public class ListBuahActivity extends AppCompatActivity {
     }
 }
 
-class HargaBarang{
-    private long harga_kilo;
-    private String id;
 
     public HargaBarang() {
     }
-
-    public HargaBarang(long harga_kilo, String id) {
-        this.harga_kilo = harga_kilo;
-        this.id = id;
-    }
-
-    public long getHarga_kilo() {
-        return harga_kilo;
-    }
-
-    public void setHarga_kilo(long harga_kilo) {
-        this.harga_kilo = harga_kilo;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-}
 
 class DaftarKebun{
     String name;
