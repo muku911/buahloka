@@ -1,6 +1,8 @@
 package com.calcatz.buahloka;
 
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,8 +18,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.Random;
+import java.util.UUID;
 
 public class DetailKebunActivity extends AppCompatActivity {
     //Firebase
@@ -27,6 +34,7 @@ public class DetailKebunActivity extends AppCompatActivity {
 
     //Data
     private DetailData detailData;
+    private Keranjang keranjang;
 
 
     private Rating ratting;
@@ -109,6 +117,17 @@ public class DetailKebunActivity extends AppCompatActivity {
                                 startActivity(gotoListBuah);
                             }
                         });
+                        btn_buyItem.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                String idkutmj = UUID.randomUUID().toString();
+                                keranjang = new Keranjang(idkutmj, detailData.getId(),1, detailData.getHarga_kilo());
+                                databaseDetail.child("User").child("ujnYGeECSfcpQtjmltHM3AdhrBL2").child("Keranjang").child("Item").child(idkutmj).setValue(keranjang);
+                                Toast.makeText(DetailKebunActivity.this, "Telah dipindah kan ke Keranjang Anda", Toast.LENGTH_LONG).show();
+
+                            }
+                        });
                     }
 
                     @Override
@@ -156,10 +175,6 @@ public class DetailKebunActivity extends AppCompatActivity {
         });
 
 
-
-    }
-
-    public void buyButton(View view){
 
     }
 
@@ -238,6 +253,54 @@ public class DetailKebunActivity extends AppCompatActivity {
         tx_isiKadaluarsa = (TextView)findViewById(R.id.tx_isiKadaluarsa);
 
         tx_isiManfaat = (TextView)findViewById(R.id.tx_isiManfaat);
+    }
+}
+
+
+class Keranjang{
+    String id, id_barang;
+    long quantity, harga;
+
+    public Keranjang() {
+    }
+
+    public Keranjang(String id, String id_barang, long quantity, long harga) {
+        this.id = id;
+        this.id_barang = id_barang;
+        this.quantity = quantity;
+        this.harga = harga;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId_barang() {
+        return id_barang;
+    }
+
+    public void setId_barang(String id_barang) {
+        this.id_barang = id_barang;
+    }
+
+    public long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
+    }
+
+    public long getHarga() {
+        return harga;
+    }
+
+    public void setHarga(long harga) {
+        this.harga = harga;
     }
 }
 

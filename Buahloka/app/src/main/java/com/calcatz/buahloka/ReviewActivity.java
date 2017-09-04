@@ -98,7 +98,7 @@ public class ReviewActivity extends AppCompatActivity {
                                 pereview = new Pereview(namaPereview,komentarPereview,ratingPereview);
                                 pereviewList.add(pereview);
 
-                               // Toast.makeText(ReviewActivity.this, "Welcomes ", Toast.LENGTH_SHORT).show();
+                               //
 
 
 
