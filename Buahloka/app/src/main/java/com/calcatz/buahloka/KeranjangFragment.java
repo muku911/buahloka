@@ -11,6 +11,14 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,12 +32,18 @@ public class KeranjangFragment extends Fragment{
         // Required empty public constructor
     }
 
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    FirebaseUser user = firebaseAuth.getCurrentUser();
+
     ListView lv_item_keranjang;
 
     ArrayList<String> nama_barang = new ArrayList<>();
     ArrayList<String> nama_toko = new ArrayList<>();
     ArrayList<Integer> quantity = new ArrayList<>();
     ArrayList<Integer> harga_barang = new ArrayList<>();
+
+    ArrayList<String> id_barang = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,17 +62,31 @@ public class KeranjangFragment extends Fragment{
     }
 
     private void setValue(){
-        nama_barang.add(0,"Jeruk");
-        nama_barang.add(1,"Jambu");
+//        nama_barang.add(0,"Jeruk");
+//        nama_barang.add(1,"Jambu");
+//
+//        nama_toko.add(0,"Toko Bunda");
+//        nama_toko.add(1,"Toko Bapak");
+//
+//        quantity.add(0,5);
+//        quantity.add(1,10);
+//
+//        harga_barang.add(0,100000);
+//        harga_barang.add(1,200000);
+        DatabaseReference dr_nama_barang = database.getReference();
+        dr_nama_barang.child("User").child(user.getUid()).child("Keranjang").child("Item").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren()){
+                    id_barang.add();
+                }
+            }
 
-        nama_toko.add(0,"Toko Bunda");
-        nama_toko.add(1,"Toko Bapak");
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-        quantity.add(0,5);
-        quantity.add(1,10);
-
-        harga_barang.add(0,100000);
-        harga_barang.add(1,200000);
+            }
+        });
     }
 }
 
