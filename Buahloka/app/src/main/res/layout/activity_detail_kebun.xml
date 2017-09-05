@@ -173,11 +173,28 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_buyItem"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Beli" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_buyItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:text="Beli" />
+
+                <CheckBox
+                    android:id="@+id/favorite_box"
+                    style="@android:style/Widget.Holo.Light.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:button="@android:drawable/btn_star" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

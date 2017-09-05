@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -45,6 +47,7 @@ public class DetailKebunActivity extends AppCompatActivity {
     private RatingBar rating;
     private ImageView img_logoBuah;
     private Button btn_buyItem, btn_review;
+    private CheckBox favorite_box;
 
     private ImageView img_doc1, img_doc2, img_doc3;
     private TextView
@@ -74,6 +77,17 @@ public class DetailKebunActivity extends AppCompatActivity {
         headerView();
 
         //set
+
+        favorite_box.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    Toast.makeText(DetailKebunActivity.this, "Barang telah di favoritkan", Toast.LENGTH_LONG).show();
+                }else if (!b){
+                    Toast.makeText(DetailKebunActivity.this, "Barang dihapus dari favorit", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
 
         //firewbase
@@ -253,6 +267,8 @@ public class DetailKebunActivity extends AppCompatActivity {
         tx_isiKadaluarsa = (TextView)findViewById(R.id.tx_isiKadaluarsa);
 
         tx_isiManfaat = (TextView)findViewById(R.id.tx_isiManfaat);
+
+        favorite_box = (CheckBox)findViewById(R.id.favorite_box);
     }
 }
 
