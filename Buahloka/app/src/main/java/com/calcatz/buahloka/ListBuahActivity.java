@@ -66,25 +66,13 @@ public class ListBuahActivity extends AppCompatActivity {
 
         headerView();
         init();
-
+        image();
         //test
         //tx_tersedia.setText(id);
 
         //Action
         tv_provinsiAsal.setText(pilihanProvinsi);
-
-        switch (pilihanBuah){
-            case "Jeruk":
-                img_logoBuah.setImageResource(R.drawable.img_jeruk);
-                break;
-            case "Pisang":
-                img_logoBuah.setImageResource(R.drawable.img_pisang);
-
-                break;
-            case "Apel":
-                img_logoBuah.setImageResource(R.drawable.img_apel);
-                break;
-        }
+        
 
 
 
@@ -239,6 +227,79 @@ public class ListBuahActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void image() {
+        if (pilihanBuah.equals("Alpukat"))
+            img_logoBuah.setImageResource(R.drawable.avocado);
+        else if (pilihanBuah.equals("Anggur"))
+            img_logoBuah.setImageResource(R.drawable.grapes);
+        else if (pilihanBuah.equals("Apel"))
+            img_logoBuah.setImageResource(R.drawable.apple);
+        else if (pilihanBuah.equals("Belimbing"))
+            img_logoBuah.setImageResource(R.drawable.starfruit);
+        else if (pilihanBuah.equals("Bengkuang"))
+            img_logoBuah.setImageResource(R.drawable.bengkoang);
+        else if (pilihanBuah.equals("Blewah"))
+            img_logoBuah.setImageResource(R.drawable.cantaloupe);
+        else if (pilihanBuah.equals("Duku"))
+            img_logoBuah.setImageResource(R.drawable.duku);
+        else if (pilihanBuah.equals("Durian"))
+            img_logoBuah.setImageResource(R.drawable.durian);
+        else if (pilihanBuah.equals("Jambu"))
+            img_logoBuah.setImageResource(R.drawable.jambu);
+        else if (pilihanBuah.equals("Jeruk"))
+            img_logoBuah.setImageResource(R.drawable.orange);
+        else if (pilihanBuah.equals("Kelapa"))
+            img_logoBuah.setImageResource(R.drawable.coconut);
+        else if (pilihanBuah.equals("Kelengkeng"))
+            img_logoBuah.setImageResource(R.drawable.duku);
+        else if (pilihanBuah.equals("Kiwi"))
+            img_logoBuah.setImageResource(R.drawable.kiwi);
+        else if (pilihanBuah.equals("Kurma"))
+            img_logoBuah.setImageResource(R.drawable.kurma);
+        else if (pilihanBuah.equals("Lemon"))
+            img_logoBuah.setImageResource(R.drawable.lemon);
+        else if (pilihanBuah.equals("Leci"))
+            img_logoBuah.setImageResource(R.drawable.leci);
+        else if (pilihanBuah.equals("Labu"))
+            img_logoBuah.setImageResource(R.drawable.pumpkin);
+        else if (pilihanBuah.equals("Mangga"))
+            img_logoBuah.setImageResource(R.drawable.mangga);
+        else if (pilihanBuah.equals("Manggis"))
+            img_logoBuah.setImageResource(R.drawable.mangosteen);
+        else if (pilihanBuah.equals("Markisa"))
+            img_logoBuah.setImageResource(R.drawable.markisa);
+        else if (pilihanBuah.equals("Melon"))
+            img_logoBuah.setImageResource(R.drawable.melon);
+        else if (pilihanBuah.equals("Nanas"))
+            img_logoBuah.setImageResource(R.drawable.pineapple);
+        else if (pilihanBuah.equals("Nangka"))
+            img_logoBuah.setImageResource(R.drawable.nangka);
+        else if (pilihanBuah.equals("Naga"))
+            img_logoBuah.setImageResource(R.drawable.buahnaga);
+        else if (pilihanBuah.equals("Pepaya"))
+            img_logoBuah.setImageResource(R.drawable.papaya);
+        else if (pilihanBuah.equals("Pir"))
+            img_logoBuah.setImageResource(R.drawable.pear);
+        else if (pilihanBuah.equals("Pisang"))
+            img_logoBuah.setImageResource(R.drawable.banana);
+        else if (pilihanBuah.equals("Rambutan"))
+            img_logoBuah.setImageResource(R.drawable.rambutan);
+        else if (pilihanBuah.equals("Salak"))
+            img_logoBuah.setImageResource(R.drawable.salak);
+        else if (pilihanBuah.equals("Sawo"))
+            img_logoBuah.setImageResource(R.drawable.sawo);
+        else if (pilihanBuah.equals("Semangka"))
+            img_logoBuah.setImageResource(R.drawable.watermelon);
+        else if (pilihanBuah.equals("Sirsak"))
+            img_logoBuah.setImageResource(R.drawable.sirsak);
+        else if (pilihanBuah.equals("Srikaya"))
+            img_logoBuah.setImageResource(R.drawable.srikaya);
+        else if (pilihanBuah.equals("Strawberry"))
+            img_logoBuah.setImageResource(R.drawable.strawberry);
+        else if (pilihanBuah.equals("Tomat"))
+            img_logoBuah.setImageResource(R.drawable.tomato);
     }
 
     private void init() {

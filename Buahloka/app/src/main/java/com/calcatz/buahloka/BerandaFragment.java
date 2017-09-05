@@ -246,12 +246,81 @@ class NamabuahViewAdapter extends BaseAdapter{
             inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             itemView = inflater.inflate(R.layout.items_beranda, null);
         }
+
         TextView jenisBuah = (TextView)itemView.findViewById(R.id.tv_itemBeranda);
         ImageView gambarBuah = (ImageView)itemView.findViewById(R.id.img_itemBeranda);
 
-
+        if (namaBuah.get(i).getName().equals("Alpukat"))
+            gambarBuah.setImageResource(R.drawable.avocado);
+        else if (namaBuah.get(i).getName().equals("Anggur"))
+            gambarBuah.setImageResource(R.drawable.grapes);
+        else if (namaBuah.get(i).getName().equals("Apel"))
+            gambarBuah.setImageResource(R.drawable.apple);
+        else if (namaBuah.get(i).getName().equals("Belimbing"))
+            gambarBuah.setImageResource(R.drawable.starfruit);
+        else if (namaBuah.get(i).getName().equals("Bengkuang"))
+            gambarBuah.setImageResource(R.drawable.bengkoang);
+        else if (namaBuah.get(i).getName().equals("Blewah"))
+            gambarBuah.setImageResource(R.drawable.cantaloupe);
+        else if (namaBuah.get(i).getName().equals("Duku"))
+            gambarBuah.setImageResource(R.drawable.duku);
+        else if (namaBuah.get(i).getName().equals("Durian"))
+            gambarBuah.setImageResource(R.drawable.durian);
+        else if (namaBuah.get(i).getName().equals("Jambu"))
+            gambarBuah.setImageResource(R.drawable.jambu);
+        else if (namaBuah.get(i).getName().equals("Jeruk"))
+            gambarBuah.setImageResource(R.drawable.orange);
+        else if (namaBuah.get(i).getName().equals("Kelapa"))
+            gambarBuah.setImageResource(R.drawable.coconut);
+        else if (namaBuah.get(i).getName().equals("Kelengkeng"))
+            gambarBuah.setImageResource(R.drawable.duku);
+        else if (namaBuah.get(i).getName().equals("Kiwi"))
+            gambarBuah.setImageResource(R.drawable.kiwi);
+        else if (namaBuah.get(i).getName().equals("Kurma"))
+            gambarBuah.setImageResource(R.drawable.kurma);
+        else if (namaBuah.get(i).getName().equals("Lemon"))
+            gambarBuah.setImageResource(R.drawable.lemon);
+        else if (namaBuah.get(i).getName().equals("Leci"))
+            gambarBuah.setImageResource(R.drawable.leci);
+        else if (namaBuah.get(i).getName().equals("Labu"))
+            gambarBuah.setImageResource(R.drawable.pumpkin);
+        else if (namaBuah.get(i).getName().equals("Mangga"))
+            gambarBuah.setImageResource(R.drawable.mangga);
+        else if (namaBuah.get(i).getName().equals("Manggis"))
+            gambarBuah.setImageResource(R.drawable.mangosteen);
+        else if (namaBuah.get(i).getName().equals("Markisa"))
+            gambarBuah.setImageResource(R.drawable.markisa);
+        else if (namaBuah.get(i).getName().equals("Melon"))
+            gambarBuah.setImageResource(R.drawable.melon);
+        else if (namaBuah.get(i).getName().equals("Nanas"))
+            gambarBuah.setImageResource(R.drawable.pineapple);
+        else if (namaBuah.get(i).getName().equals("Nangka"))
+            gambarBuah.setImageResource(R.drawable.nangka);
+        else if (namaBuah.get(i).getName().equals("Naga"))
+            gambarBuah.setImageResource(R.drawable.buahnaga);
+        else if (namaBuah.get(i).getName().equals("Pepaya"))
+            gambarBuah.setImageResource(R.drawable.papaya);
+        else if (namaBuah.get(i).getName().equals("Pir"))
+            gambarBuah.setImageResource(R.drawable.pear);
+        else if (namaBuah.get(i).getName().equals("Pisang"))
+            gambarBuah.setImageResource(R.drawable.banana);
+        else if (namaBuah.get(i).getName().equals("Rambutan"))
+            gambarBuah.setImageResource(R.drawable.rambutan);
+        else if (namaBuah.get(i).getName().equals("Salak"))
+            gambarBuah.setImageResource(R.drawable.salak);
+        else if (namaBuah.get(i).getName().equals("Sawo"))
+            gambarBuah.setImageResource(R.drawable.sawo);
+        else if (namaBuah.get(i).getName().equals("Semangka"))
+            gambarBuah.setImageResource(R.drawable.watermelon);
+        else if (namaBuah.get(i).getName().equals("Sirsak"))
+            gambarBuah.setImageResource(R.drawable.sirsak);
+        else if (namaBuah.get(i).getName().equals("Srikaya"))
+            gambarBuah.setImageResource(R.drawable.srikaya);
+        else if (namaBuah.get(i).getName().equals("Strawberry"))
+            gambarBuah.setImageResource(R.drawable.strawberry);
+        else if (namaBuah.get(i).getName().equals("Tomat"))
+            gambarBuah.setImageResource(R.drawable.tomato);
         jenisBuah.setText(namaBuah.get(i).getName());
-
 
 
         return itemView;
