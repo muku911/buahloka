@@ -12,6 +12,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,9 +30,11 @@ import java.util.UUID;
 
 public class DetailKebunActivity extends AppCompatActivity {
     //Firebase
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase mydatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseDetail = mydatabase.getReference();
     private DatabaseReference databaseRating = mydatabase.getReference();
+    private FirebaseUser user = firebaseAuth.getCurrentUser();
 
     //Data
     private DetailData detailData;
@@ -123,7 +127,7 @@ public class DetailKebunActivity extends AppCompatActivity {
 
                                 String idkutmj = UUID.randomUUID().toString();
                                 keranjang = new Keranjang(idkutmj, detailData.getId(),1, detailData.getHarga_kilo());
-                                databaseDetail.child("User").child("ujnYGeECSfcpQtjmltHM3AdhrBL2").child("Keranjang").child("Item").child(idkutmj).setValue(keranjang);
+                                databaseDetail.child("User").child(user.getUid()).child("Keranjang").child("Item").child(idkutmj).setValue(keranjang);
                                 Toast.makeText(DetailKebunActivity.this, "Telah dipindah kan ke Keranjang Anda", Toast.LENGTH_LONG).show();
 
                             }
