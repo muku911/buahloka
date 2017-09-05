@@ -78,7 +78,7 @@ public class KeranjangFragment extends Fragment{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot data : dataSnapshot.getChildren()){
-                    id_barang.add();
+                    //id_barang.add();
                 }
             }
 

@@ -70,7 +70,7 @@ public class ListJualanActivity extends AppCompatActivity {
         listJualan = new ListJualan(pilihBuah, "Pisang Ambon", "100 Kg");
         jualanList.add(listJualan);
 
-        listJualan = new ListJualan(pilihBuah, "Pisang Ambon", "14 Kg");
+        listJualan = new ListJualan();
         jualanList.add(listJualan);
     }
 }
