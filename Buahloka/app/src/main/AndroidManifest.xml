@@ -23,7 +23,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme2" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity
@@ -37,6 +37,10 @@
             android:theme="@style/AppTheme3" />
         <activity android:name=".ReviewActivity"
             android:theme="@style/AppTheme3"></activity>
+        <activity
+            android:name=".TokoActivity"
+            android:label="@string/title_activity_toko"
+            android:theme="@style/AppTheme2"></activity>
     </application>
 
 </manifest>
