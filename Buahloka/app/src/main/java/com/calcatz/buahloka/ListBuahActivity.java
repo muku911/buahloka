@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
@@ -24,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class ListBuahActivity extends AppCompatActivity {
@@ -35,7 +38,7 @@ public class ListBuahActivity extends AppCompatActivity {
     private DatabaseReference databaseProvinsi  = mydatabase.getReference();
 
     //UI
-    private Spinner spinner_daerah, spinner_sortby;
+    private Spinner spinner_daerah, spinner_sortby, spinnerAorD;
     private ImageView img_logoBuah;
     private TextView tv_provinsiAsal,tx_tersedia;
     private GridView gv_daftarKebun;
@@ -58,6 +61,8 @@ public class ListBuahActivity extends AppCompatActivity {
 
     private DaftarKebunViewAdapter adapter;
 
+    private boolean boolNamaKebun, boolHarga;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +77,6 @@ public class ListBuahActivity extends AppCompatActivity {
 
         //Action
         tv_provinsiAsal.setText(pilihanProvinsi);
-        
-
 
 
         //Click
@@ -180,9 +183,11 @@ public class ListBuahActivity extends AppCompatActivity {
 
                                                     namaKebun = dataSnapshot.child("name").getValue(String.class);
 
-
                                                     daftarKebun = new DaftarKebun(namaKebun);
                                                     kebunList.add(daftarKebun);
+
+
+
                                                     int sum = kebunList.size();
                                                     for (int a = 0; a < sum; a++) {
                                                         adapter = new DaftarKebunViewAdapter(ListBuahActivity.this, kebunList, hargaList);
@@ -305,12 +310,22 @@ public class ListBuahActivity extends AppCompatActivity {
     private void init() {
         spinner_daerah = (Spinner)findViewById(R.id.spinnerDaerah);
         spinner_sortby = (Spinner)findViewById(R.id.spinnerSortby);
+        spinnerAorD = (Spinner)findViewById(R.id.spinnerAorD) ;
+        gv_daftarKebun = (GridView)findViewById(R.id.gv_data);
         tx_tersedia =  (TextView)findViewById(R.id.tx_tersedia);
         img_logoBuah = (ImageView)findViewById(R.id.img_logoBuah);
-
         tv_provinsiAsal = (TextView)findViewById(R.id.tx_provinsi);
 
-        gv_daftarKebun = (GridView)findViewById(R.id.gv_data);
+        String[] sortBy = {"Nama Toko", "Harga"};
+        String[] aord = {"Ascending","Descending"};
+
+        ArrayAdapter<String> adaptersortby = new ArrayAdapter<String>(ListBuahActivity.this, android.R.layout.simple_spinner_dropdown_item, sortBy);
+        spinner_sortby.setAdapter(adaptersortby);
+
+        ArrayAdapter<String> adapteraord = new ArrayAdapter<String>(ListBuahActivity.this, android.R.layout.simple_spinner_dropdown_item, aord);
+        spinnerAorD.setAdapter(adapteraord);
+
+
     }
 
     private void headerView() {
