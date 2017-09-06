@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -62,6 +63,7 @@ public class DetailKebunActivity extends AppCompatActivity {
             tx_isiLastTestKandungan, tx_isiKandungan, tx_isiStatusKandungan,
             tx_isiKadaluarsa,
             tx_isiManfaat;
+    private EditText etx_fillKg;
 
 
     //String
@@ -140,8 +142,9 @@ public class DetailKebunActivity extends AppCompatActivity {
                             public void onClick(View view) {
 
                                 String idkutmj = UUID.randomUUID().toString();
-                                keranjang = new Keranjang(idkutmj, detailData.getId(),1, detailData.getHarga_kilo());
-                                databaseDetail.child("User").child(user.getUid()).child("Keranjang").child("Item").child(idkutmj).setValue(keranjang);
+                                long banyak = Long.parseLong(etx_fillKg.getText().toString());
+                                keranjang = new Keranjang(idkutmj, detailData.getId(),banyak, detailData.getHarga_kilo());
+                                databaseDetail.child("User").child("ujnYGeECSfcpQtjmltHM3AdhrBL2").child("Keranjang").child("Item").child(idkutmj).setValue(keranjang);
                                 Toast.makeText(DetailKebunActivity.this, "Telah dipindah kan ke Keranjang Anda", Toast.LENGTH_LONG).show();
 
                             }
@@ -273,6 +276,8 @@ public class DetailKebunActivity extends AppCompatActivity {
         tx_isiManfaat = (TextView)findViewById(R.id.tx_isiManfaat);
 
         favorite_box = (CheckBox)findViewById(R.id.favorite_box);
+
+        etx_fillKg = (EditText)findViewById(R.id.etx_fillKg);
     }
 }
 
