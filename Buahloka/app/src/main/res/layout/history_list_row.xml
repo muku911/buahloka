@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:padding="10dp"
+        app:srcCompat="@drawable/ic_delete" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/topbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/iv_photo_barang"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@color/topbar"
+                android:layout_weight="0.38" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tv_nama_barang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Barang"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_harga_barang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Harga Barang" />
+
+                <TextView
+                    android:id="@+id/tv_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Quantity" />
+
+                <TextView
+                    android:id="@+id/tv_nama_toko"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Toko" />
+
+                <TextView
+                    android:id="@+id/tv_tujuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tujuan" />
+
+                <TextView
+                    android:id="@+id/tv_onkir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Biaya Kirim" />
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Status" />
+
+                <TextView
+                    android:id="@+id/tv_resi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nomor Resi" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
