@@ -78,8 +78,8 @@ public class ListJualanActivity extends AppCompatActivity {
                     jualanList.add(listJualan);
                     Log.d("LOGUOU", "qweqweq");
                 }
-//                adapter = new ListJualanViewAdapter(ListJualanActivity.this,jualanList);
-//                lv_listJualan.setAdapter(adapter);
+                adapter = new ListJualanViewAdapter(ListJualanActivity.this,jualanList);
+                lv_listJualan.setAdapter(adapter);
                 Log.d("LOGUOU", "a");
 
             }

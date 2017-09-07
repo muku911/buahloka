@@ -32,21 +32,20 @@
         <activity
             android:name=".ReviewActivity"
             android:theme="@style/AppTheme3" />
-        <activity android:name=".TokoHistory"></activity>
-        <activity android:name=".Pesanan">
-
-        </activity>
-        <activity android:name=".TokoReview">
-
-        </activity>
-        <activity android:name=".TokoActivity"
-            android:theme="@style/AppTheme3" >
+        <activity android:name=".TokoHistory" />
+        <activity android:name=".Pesanan" />
+        <activity android:name=".TokoReview" />
+        <activity
+            android:name=".TokoActivity"
+            android:theme="@style/AppTheme3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TambahProduk" />
+        <activity android:name=".DataKebun"></activity>
     </application>
 
 </manifest>

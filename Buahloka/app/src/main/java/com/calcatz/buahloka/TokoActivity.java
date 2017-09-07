@@ -29,25 +29,25 @@ public class TokoActivity extends AppCompatActivity{
         btnpesanan = (Button) findViewById(R.id.btnPesanan);
 
         btnlist.setOnClickListener(new View.OnClickListener() {
-                                       @Override
-                                       public void onClick(View view) {
-                                           Intent i = new Intent(getApplicationContext(), ListJualanActivity.class);
-                                           startActivity(i);
-                                       }
-                                   });
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), ListJualanActivity.class);
+                startActivity(i);
+            }
+        });
 
         btnreview.setOnClickListener(new View.OnClickListener(){
-                                         @Override
-                                         public void onClick(View view) {
-                                             Intent i = new Intent(getApplicationContext(), TokoReview.class);
-                                             startActivity(i);
-                                         }
-                                     });
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), DataKebun.class);
+                startActivity(i);
+            }
+        });
 
         btnpesanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), Pesanan.class);
+                Intent i = new Intent(getApplicationContext(), TambahProduk.class);
                 startActivity(i);
             }
         });
