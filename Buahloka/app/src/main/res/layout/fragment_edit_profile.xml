@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/bualoka_warna_muda"
     tools:context="com.calcatz.buahloka.EditProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -20,6 +20,7 @@
             android:text="Edit Profile"
             android:textAlignment="center"
             android:textSize="24sp"
+            android:textColor="@android:color/white"
             android:textStyle="bold" />
 
         <ScrollView
@@ -49,6 +50,39 @@
                         android:hint="Nama Panjang"
                         android:imeOptions="actionUnspecified"
                         android:inputType="textPersonName"
+                        android:textColor="@android:color/white"
+                        android:maxLines="1" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/edt_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nomor Telepon"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="phone"
+                        android:textColor="@android:color/white"
+                        android:maxLines="1" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/edt_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Alamat"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
                         android:maxLines="1" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -65,13 +99,15 @@
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@android:color/white"
                         android:text="Provinsi"
                         android:textSize="18sp" />
 
                     <Spinner
-                        android:id="@+id/spinner3"
+                        android:id="@+id/spnr_provinsi"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
                         android:layout_weight="1" />
                 </LinearLayout>
 
@@ -87,67 +123,17 @@
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@android:color/white"
                         android:text="Kota"
                         android:textSize="18sp" />
 
                     <Spinner
-                        android:id="@+id/spinner1"
+                        android:id="@+id/spnr_kota"
                         android:layout_width="100dp"
+                        android:textColor="@android:color/white"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp">
-
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Kecamatan"
-                        android:textSize="18sp" />
-
-                    <Spinner
-                        android:id="@+id/spinner2"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-                </LinearLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <EditText
-                        android:id="@+id/edt_address"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Alamat"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLines="1" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <EditText
-                        android:id="@+id/edt_phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Nomor Telepon"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="phone"
-                        android:maxLines="1" />
-
-                </android.support.design.widget.TextInputLayout>
 
                 <Button
                     android:id="@+id/btn_save_profile"

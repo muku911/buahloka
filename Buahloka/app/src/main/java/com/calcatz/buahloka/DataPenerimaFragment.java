@@ -161,21 +161,26 @@ public class DataPenerimaFragment extends Fragment {
                 String alamaat = et_alamat_penerima.getText().toString();
                 String nama = et_nama_penerima.getText().toString();
 
+                List<String> id = new ArrayList<String>();
                 for (int i = 0; i<id_item.size(); i++){
                     String idTransaksi = UUID.randomUUID().toString();
+                    id.add(idTransaksi);
                     TransaksiUser transaksiUser = new TransaksiUser(idTransaksi,alamaat,city,id_toko.get(i),nama,province,harga_barang.get(i));
                     IdBarang idBarang = new IdBarang(id_item.get(i),id_for_barang.get(i),quantity.get(i),harga_barang.get(i));
                     DatabaseReference dr_post_transaksi = database.getReference();
                     dr_post_transaksi.child("User").child(user.getUid()).child("Transaksi").child(idTransaksi).setValue(transaksiUser);
                     dr_post_transaksi.child("User").child(user.getUid()).child("Transaksi").child(idTransaksi).child(id_item.get(i)).setValue(idBarang);
+                    dr_post_transaksi.child("User").child(user.getUid()).child("Transaksi").child(idTransaksi).child(id_item.get(i)).removeValue();
                 }
-                KeranjangFragment keranjangFragment = new KeranjangFragment();
-                Bundle bundle1 = new Bundle();
-                bundle1.putString("From","Keranjang Kosong");
-                bundle1.putInt("Panjang", id_item.size());
-                keranjangFragment.setArguments(bundle1);
+
+                for (int i = 0; i<id_item.size(); i++){
+                    DatabaseReference dr_post_transaksi = database.getReference();
+                    dr_post_transaksi.child("User").child(user.getUid()).child("Keranjang").child("Item").child(id_item.get(i)).removeValue();
+                }
+
+                BerandaFragment berandaFragment = new BerandaFragment();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_view,keranjangFragment);
+                fragmentTransaction.replace(R.id.fragment_view,berandaFragment);
                 fragmentTransaction.commit();
             }
         });

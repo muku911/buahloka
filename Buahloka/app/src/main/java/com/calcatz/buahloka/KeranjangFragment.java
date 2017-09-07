@@ -63,11 +63,11 @@ public class KeranjangFragment extends Fragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_keranjang, container, false);
 
-        Bundle dataBundle = this.getArguments();
-        if(dataBundle!=null){
-            status = dataBundle.getString("From");
-            panjang = dataBundle.getInt("Panjang");
-        }
+//        Bundle dataBundle = this.getArguments();
+//        if(dataBundle!=null){
+//            status = dataBundle.getString("From");
+//            panjang = dataBundle.getInt("Panjang");
+//        }
 
         lv_item_keranjang = view.findViewById(R.id.lv_keranjang);
 
@@ -78,11 +78,12 @@ public class KeranjangFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 DataPenerimaFragment dataPenerimaFragment = new DataPenerimaFragment();
+                KeranjangFragment keranjangFragment = (KeranjangFragment) getActivity().getSupportFragmentManager().findFragmentByTag();
                 Bundle bundle = new Bundle();
                 bundle.putInt("harga",hartot);
                 dataPenerimaFragment.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_view,dataPenerimaFragment);
+                fragmentTransaction.add(R.id.fragment_view,dataPenerimaFragment);
                 fragmentTransaction.commit();
             }
         });
@@ -140,17 +141,17 @@ public class KeranjangFragment extends Fragment{
                     tv_harga_total.setText("Rp. " + String.valueOf(hartot));
                 }
 
-                if(status.equals("Keranjang Kosong")){
-                    DatabaseReference dr_delete = database.getReference();
-                    Toast.makeText(getActivity(),"Pesanan Anda akan diproses oleh pihak bualoka",Toast.LENGTH_SHORT).show();
-                    for(int i = 0; i<panjang; i++) {
-                        if (id_item != null) {
-                            dr_delete.child("User").child(user.getUid()).child("Keranjang").child("Item").child(id_item.get(0)).removeValue();
-                        }
-                    }
-                    status = "OK";
-
-                }
+//                if(status.equals("Keranjang Kosong")){
+//                    DatabaseReference dr_delete = database.getReference();
+//                    Toast.makeText(getActivity(),"Pesanan Anda akan diproses oleh pihak bualoka",Toast.LENGTH_SHORT).show();
+//                    for(int i = 0; i<panjang; i++) {
+//                        if (id_item != null) {
+//                            dr_delete.child("User").child(user.getUid()).child("Keranjang").child("Item").child(id_item.get(0)).removeValue();
+//                        }
+//                    }
+//                    status = "OK";
+//
+//                }
                 
 
                 setBarang();
@@ -322,16 +323,16 @@ class KeranjangAdapter extends BaseAdapter{
     List<String> nama_barang,nama_toko;
     List<Integer> quantity,harga_barang;
     List<String> id_item;
-    LayoutInflater inflater;
+    private LayoutInflater inflater;
 
     public KeranjangAdapter(Context context,List<String> id_item, List<String> nama_barang, List<String> nama_toko, List<Integer> quantity, List<Integer> harga_barang){
-        this.context = context;
-        this.id_item = id_item;
-        this.nama_barang = nama_barang;
-        this.nama_toko = nama_toko;
-        this.quantity = quantity;
-        this.harga_barang = harga_barang;
-        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            this.context = context;
+            this.id_item = id_item;
+            this.nama_barang = nama_barang;
+            this.nama_toko = nama_toko;
+            this.quantity = quantity;
+            this.harga_barang = harga_barang;
+            this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -374,7 +375,10 @@ class KeranjangAdapter extends BaseAdapter{
             @Override
             public void onClick(View view) {
                 dr_delete.child("User").child(user.getUid()).child("Keranjang").child("Item").child(id_item.get(urut)).removeValue();
-            }
+                KeranjangFragment keranjangFragment = new KeranjangFragment();
+                keranjangFragment.setItem();
+
+             }
         });
         return rootView;
     }
