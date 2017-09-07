@@ -47,4 +47,5 @@
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="date_picker_theme" parent="@android:style/Widget.DatePicker"/>
 </resources>

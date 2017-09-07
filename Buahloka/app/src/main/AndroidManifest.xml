@@ -48,6 +48,8 @@
         <activity android:name=".TokoActivity"
             android:theme="@style/AppTheme2" >
         </activity>
+        <activity android:name=".TambahProduk" />
+        <activity android:name=".DataKebun"></activity>
     </application>
 
 </manifest>
