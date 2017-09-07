@@ -6,7 +6,6 @@
     android:background="@android:color/white"
     tools:context="com.calcatz.buahloka.ProfileFragment">
 
-<<<<<<< Updated upstream
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,8 +24,7 @@
                 android:layout_above="@+id/textView3"
                 android:layout_centerHorizontal="true"
                 android:layout_weight="0.36"
-                android:padding="20dp"
-                app:srcCompat="@drawable/img_pisang2" />
+                android:padding="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -36,13 +34,12 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/nama"
+                android:id="@+id/tv_nama_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="10dp"
                 android:paddingTop="20dp"
-                android:text="Dhimas Kautsar Fariqi"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
@@ -57,12 +54,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/kota"
+                android:id="@+id/tv_telp_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingBottom="15dp"
-                android:text="Malang"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
@@ -89,13 +85,12 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/tv_alamat_user"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginRight="50dp"
                 android:layout_weight="1"
-                android:text="Sukolilo Park Regency, Blok G13"
                 android:textAlignment="viewStart"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
@@ -109,25 +104,23 @@
             android:padding="5dp">
 
             <TextView
-                android:id="@+id/sub"
+                android:id="@+id/provinsi"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_weight="1"
-                android:text="Distrik"
-                android:textAlignment="viewStart"
+                android:text="Provinsi"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/tv_provinsi_user"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginRight="50dp"
                 android:layout_weight="1"
-                android:text="Sukolilo"
                 android:textAlignment="viewStart"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
@@ -153,68 +146,17 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/tv_kota_user"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginRight="50dp"
                 android:layout_weight="1"
-                android:text="Surabaya"
                 android:textAlignment="viewStart"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <TextView
-                android:id="@+id/provinsi"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_weight="1"
-                android:text="Provinsi"
-                android:textAlignment="viewStart"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginRight="50dp"
-                android:layout_weight="1"
-                android:text="Jawa Timur"
-                android:textAlignment="viewStart"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
-
-        </LinearLayout>
     </LinearLayout>
-=======
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="95dp"
-        />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Profile"
-        android:textSize="14sp" />
->>>>>>> Stashed changes
-
 </RelativeLayout>
