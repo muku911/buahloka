@@ -2,8 +2,10 @@ package com.calcatz.buahloka;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +15,25 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListJualanActivity extends AppCompatActivity {
 
+    //firebase
+     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+//     DatabaseReference jualanRef = mRootRef.child("Jualan");
+
     //UI
     private ListView lv_listJualan;
 
-    //Data
+//    Data
     private String pilihKebun, pilihBuah;
 
     private ListJualan listJualan;
@@ -29,57 +41,81 @@ public class ListJualanActivity extends AppCompatActivity {
 
     private ListJualanViewAdapter adapter;
 
+    public ListJualanActivity() {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_jualan);
 
         //LoadBundle
-        Bundle bundle;
-        bundle = getIntent().getExtras();
-        pilihKebun = bundle.getString("pilihankebun");
-        pilihBuah = bundle.getString("pilihanBuah");
+//        Bundle bundle;
+//        bundle = getIntent().getExtras();
+//        pilihKebun = bundle.getString("pilihankebun");
+//        pilihBuah = bundle.getString("pilihanBuah");
 
         //Inisialisasi
         lv_listJualan = (ListView)findViewById(R.id.lv_listJualan);
 
-        dataoffline();
+//        dataoffline();
+//
+//        //Tinker In Action
+//        int sum = jualanList.size();
+//
+//        for (int a = 0 ; a < sum ; a++){
+//            adapter = new ListJualanViewAdapter(ListJualanActivity.this,jualanList);
+//            lv_listJualan.setAdapter(adapter);
+//        }
 
-        //Tinker In Action
-        int sum = jualanList.size();
+        mRootRef.child("Jualan").addValueEventListener(new ValueEventListener() {
 
-        for (int a = 0 ; a < sum ; a++){
-            adapter = new ListJualanViewAdapter(ListJualanActivity.this,jualanList);
-            lv_listJualan.setAdapter(adapter);
-        }
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("LOGUOU", "asdasdasda");
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    listJualan = snapshot.getValue(ListJualan.class);
+                    jualanList.add(listJualan);
+                    Log.d("LOGUOU", "qweqweq");
+                }
+//                adapter = new ListJualanViewAdapter(ListJualanActivity.this,jualanList);
+//                lv_listJualan.setAdapter(adapter);
+                Log.d("LOGUOU", "a");
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
-    private void dataoffline() {
-        listJualan = new ListJualan(pilihBuah, "Pisang Ambon", "10 Kg");
-        jualanList.add(listJualan);
 
-        listJualan = new ListJualan(pilihBuah, "Pisang Ambon", "5 Kg");
-        jualanList.add(listJualan);
+//
+//    private void dataoffline() {
+//        listJualan = new ListJualan(pilihBuah, "Pisang Ambon", "10 Kg");
+//        jualanList.add(listJualan);
+//
+//        listJualan = new ListJualan(pilihBuah, "Pisang Ambon", "5 Kg");
+//        jualanList.add(listJualan);
+//
+//        listJualan = new ListJualan(pilihBuah, "Pisang Ambon", "4 Kg");
+//        jualanList.add(listJualan);
+//
+//        listJualan = new ListJualan(pilihBuah, "Pisang Ambon", "1 Kg");
+//        jualanList.add(listJualan);
+//
+//        listJualan = new ListJualan(pilihBuah, "Pisang Ambon", "100 Kg");
+//        jualanList.add(listJualan);
+//    }
 
-        listJualan = new ListJualan(pilihBuah, "Pisang Ambon", "4 Kg");
-        jualanList.add(listJualan);
-
-        listJualan = new ListJualan(pilihBuah, "Pisang Ambon", "1 Kg");
-        jualanList.add(listJualan);
-
-        listJualan = new ListJualan(pilihBuah, "Pisang Ambon", "100 Kg");
-        jualanList.add(listJualan);
-
-        listJualan = new ListJualan();
-        jualanList.add(listJualan);
-    }
 }
 
 class ListJualan {
     private String kategori, jenis, stok;
 
-    public ListJualan() {
-    }
 
     public ListJualan(String kategori, String jenis, String stok) {
         this.kategori = kategori;
