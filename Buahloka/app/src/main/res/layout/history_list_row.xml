@@ -1,17 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/iv_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:padding="10dp"
-        app:srcCompat="@drawable/ic_delete" />
+    android:layout_height="match_parent"
+    android:background="@color/bualoka_warna_muda">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,15 +19,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:padding="5dp"
-            android:weightSum="1">
+            android:padding="5dp">
 
             <ImageView
                 android:id="@+id/iv_photo_barang"
                 android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:background="@color/topbar"
-                android:layout_weight="0.38" />
+                android:layout_height="100dp"
+                android:background="@color/topbar"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -46,41 +35,35 @@
                 android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/tv_nama_barang"
+                    android:id="@+id/tv_nama_toko"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nama Barang"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_harga_barang"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Harga Barang" />
-
-                <TextView
-                    android:id="@+id/tv_quantity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Quantity" />
-
-                <TextView
-                    android:id="@+id/tv_nama_toko"
+                    android:id="@+id/tv_nama_penerima"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nama Toko" />
 
                 <TextView
-                    android:id="@+id/tv_tujuan"
+                    android:id="@+id/tv_alamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tujuan" />
+                    android:text="Quantity" />
 
                 <TextView
-                    android:id="@+id/tv_onkir"
+                    android:id="@+id/tv_kota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Biaya Kirim" />
+                    android:text="Harga Barang" />
+
+                <TextView
+                    android:id="@+id/tv_provinsi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Provinsi" />
 
                 <TextView
                     android:id="@+id/tv_status"
@@ -89,14 +72,14 @@
                     android:text="Status" />
 
                 <TextView
-                    android:id="@+id/tv_resi"
+                    android:id="@+id/tv_harga"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nomor Resi" />
-
+                    android:text="Harga Barang" />
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
+
 </RelativeLayout>

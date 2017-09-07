@@ -83,7 +83,6 @@ public class DetailKebunActivity extends AppCompatActivity {
         headerView();
 
         //set
-
         favorite_box.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -95,7 +94,6 @@ public class DetailKebunActivity extends AppCompatActivity {
             }
         });
 
-
         //firewbase
         databaseDetail.child("Barang").child(idKebun).addValueEventListener(new ValueEventListener() {
             @Override
@@ -103,8 +101,6 @@ public class DetailKebunActivity extends AppCompatActivity {
                 detailData = dataSnapshot.getValue(DetailData.class);
 
                 editData();
-
-
 
                 databaseRating.child("Toko").child(detailData.getId_toko()).child("Comment").addValueEventListener(new ValueEventListener() {
                     @Override
@@ -143,12 +139,13 @@ public class DetailKebunActivity extends AppCompatActivity {
 
                                 String idkutmj = UUID.randomUUID().toString();
                                 long banyak = Long.parseLong(etx_fillKg.getText().toString());
-                                keranjang = new Keranjang(idkutmj, detailData.getId(),banyak, detailData.getHarga_kilo());
+                                keranjang = new Keranjang(idkutmj, detailData.getId(),banyak, detailData.getHarga_kilo()*banyak);
                                 databaseDetail.child("User").child(user.getUid()).child("Keranjang").child("Item").child(idkutmj).setValue(keranjang);
                                 Toast.makeText(DetailKebunActivity.this, "Telah dipindah kan ke Keranjang Anda", Toast.LENGTH_LONG).show();
 
                             }
                         });
+
                     }
 
                     @Override
@@ -280,7 +277,19 @@ public class DetailKebunActivity extends AppCompatActivity {
         etx_fillKg = (EditText)findViewById(R.id.etx_fillKg);
     }
 }
+class Favorite{
+    String Id;
+    long harga;
 
+    public Favorite(){
+
+    }
+
+    public Favorite(String id, long harga){
+        this.Id = id;
+        this.harga = harga;
+    }
+}
 
 class Keranjang{
     String id, id_barang;

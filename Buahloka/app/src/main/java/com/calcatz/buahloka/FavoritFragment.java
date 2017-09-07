@@ -87,7 +87,7 @@ public class FavoritFragment extends Fragment{
 
                 for (int i = 0; i < id_barang.size(); i++) {
                     int hrg = id_barang.get(i).getHarga();
-                    String id = id_barang.get(i).getId();
+                    String id = id_barang.get(i).getId_barang();
 
                     id_item.add(id);
                     harga_barang.add(hrg);

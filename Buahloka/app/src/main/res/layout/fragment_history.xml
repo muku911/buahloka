@@ -9,8 +9,6 @@
     <ListView
         android:id="@+id/lv_history"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/btn_buyKeranjang"
-        android:layout_below="@+id/linearLayout4"></ListView>
+        android:layout_height="match_parent"></ListView>
 
 </RelativeLayout>
