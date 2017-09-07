@@ -13,13 +13,7 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/AppTheme2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme2" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
@@ -35,8 +29,24 @@
         <activity
             android:name=".DetailKebunActivity"
             android:theme="@style/AppTheme3" />
-        <activity android:name=".ReviewActivity"
-            android:theme="@style/AppTheme3"></activity>
+        <activity
+            android:name=".ReviewActivity"
+            android:theme="@style/AppTheme3" />
+        <activity android:name=".TokoHistory"></activity>
+        <activity android:name=".Pesanan">
+
+        </activity>
+        <activity android:name=".TokoReview">
+
+        </activity>
+        <activity android:name=".TokoActivity"
+            android:theme="@style/AppTheme3" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
