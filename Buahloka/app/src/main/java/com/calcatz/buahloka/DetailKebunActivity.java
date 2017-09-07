@@ -144,7 +144,7 @@ public class DetailKebunActivity extends AppCompatActivity {
                                 String idkutmj = UUID.randomUUID().toString();
                                 long banyak = Long.parseLong(etx_fillKg.getText().toString());
                                 keranjang = new Keranjang(idkutmj, detailData.getId(),banyak, detailData.getHarga_kilo());
-                                databaseDetail.child("User").child("ujnYGeECSfcpQtjmltHM3AdhrBL2").child("Keranjang").child("Item").child(idkutmj).setValue(keranjang);
+                                databaseDetail.child("User").child(user.getUid()).child("Keranjang").child("Item").child(idkutmj).setValue(keranjang);
                                 Toast.makeText(DetailKebunActivity.this, "Telah dipindah kan ke Keranjang Anda", Toast.LENGTH_LONG).show();
 
                             }

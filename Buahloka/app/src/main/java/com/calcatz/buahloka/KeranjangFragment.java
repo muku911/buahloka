@@ -1,5 +1,6 @@
 package com.calcatz.buahloka;
 
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -41,6 +43,8 @@ public class KeranjangFragment extends Fragment{
     ListView lv_item_keranjang;
     TextView tv_harga_total;
 
+    Button buy;
+
     List<String> nama_barang = new ArrayList<>();
     List<String> nama_toko = new ArrayList<>();
     List<Integer> quantity = new ArrayList<>();
@@ -50,15 +54,38 @@ public class KeranjangFragment extends Fragment{
     List<Barang> l_barang = new ArrayList<Barang>();
     List<String> id_item = new ArrayList<>();
 
+    String status = "OK";
+    int hartot = 0,panjang;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_keranjang, container, false);
 
+        Bundle dataBundle = this.getArguments();
+        if(dataBundle!=null){
+            status = dataBundle.getString("From");
+            panjang = dataBundle.getInt("Panjang");
+        }
+
         lv_item_keranjang = view.findViewById(R.id.lv_keranjang);
 
         tv_harga_total = view.findViewById(R.id.tv_harga_total);
+
+        buy = view.findViewById(R.id.btn_buyKeranjang);
+        buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DataPenerimaFragment dataPenerimaFragment = new DataPenerimaFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("harga",hartot);
+                dataPenerimaFragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_view,dataPenerimaFragment);
+                fragmentTransaction.commit();
+            }
+        });
 
         setItem();
 
@@ -81,7 +108,6 @@ public class KeranjangFragment extends Fragment{
         dr_item.child("User").child(user.getUid()).child("Keranjang").child("Item").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                int hartot = 0;
                 if(id_barang!=null){
                     id_barang.clear();
                 }
@@ -113,6 +139,20 @@ public class KeranjangFragment extends Fragment{
 
                     tv_harga_total.setText("Rp. " + String.valueOf(hartot));
                 }
+
+                if(status.equals("Keranjang Kosong")){
+                    DatabaseReference dr_delete = database.getReference();
+                    Toast.makeText(getActivity(),"Pesanan Anda akan diproses oleh pihak bualoka",Toast.LENGTH_SHORT).show();
+                    for(int i = 0; i<panjang; i++) {
+                        if (id_item != null) {
+                            dr_delete.child("User").child(user.getUid()).child("Keranjang").child("Item").child(id_item.get(0)).removeValue();
+                        }
+                    }
+                    status = "OK";
+
+                }
+                
+
                 setBarang();
             }
 
@@ -236,7 +276,8 @@ class IdBarang{
 
     }
 
-    public IdBarang(String id_barang, int qty, int harga){
+    public IdBarang(String id_item, String id_barang, int qty, int harga){
+        this.id_item = id_item;
         this.id_barang = id_barang;
         this.quantity = qty;
         this.harga = harga;

@@ -45,7 +45,6 @@
 
     </LinearLayout>
 
-
     <ListView
         android:id="@+id/lv_keranjang"
         android:layout_width="match_parent"
