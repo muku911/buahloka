@@ -238,7 +238,8 @@
                 android:id="@+id/btn_lihat_pesanan"
                 android:layout_width="200dp"
                 android:layout_gravity="right"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="Lihat Pesanan"/>
 
             <View
                 android:id="@+id/view5"

@@ -1,0 +1,217 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bualoka_warna_muda">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/topbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/iv_photo_barang"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/topbar"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:textColor="@android:color/white"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Penerima"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:paddingRight="10dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"/>
+
+                    <TextView
+                        android:id="@+id/tv_nama_penerima"
+                        android:textColor="@android:color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Toko" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:textColor="@android:color/white"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat Tujuan"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:paddingRight="10dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"/>
+
+
+                    <TextView
+                    android:id="@+id/tv_alamat"
+                        android:textColor="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Quantity" />
+
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:textColor="@android:color/white"
+                        android:layout_height="wrap_content"
+                        android:text="Kota"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:paddingRight="10dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"/>
+
+
+                    <TextView
+                    android:id="@+id/tv_kota"
+                    android:textColor="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Harga Barang" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:textColor="@android:color/white"
+                        android:layout_height="wrap_content"
+                        android:text="Provinsi"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:paddingRight="10dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"/>
+
+
+                    <TextView
+                    android:id="@+id/tv_provinsi"
+                    android:textColor="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Provinsi" />
+
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:textColor="@android:color/white"
+                        android:layout_height="wrap_content"
+                        android:text="Status Pengiriman"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:paddingRight="10dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"/>
+
+
+                    <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="match_parent"
+                    android:textColor="@android:color/white"
+                        android:layout_height="wrap_content"
+                    android:text="Status" />
+
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:textColor="@android:color/white"
+                        android:layout_height="wrap_content"
+                        android:text="Harga Barang"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="10dp"
+                        android:text=":"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                    android:id="@+id/tv_harga"
+                    android:layout_width="match_parent"
+                    android:textColor="@android:color/white"
+                        android:layout_height="wrap_content"
+                    android:text="Harga Barang" />
+
+                    </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@id/btn_terima"
+            android:layout_width="200dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:text="Terima"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

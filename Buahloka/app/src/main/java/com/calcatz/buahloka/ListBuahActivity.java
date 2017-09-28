@@ -46,6 +46,7 @@ public class ListBuahActivity extends AppCompatActivity {
     //Data
     private String pilihanBuah, pilihanProvinsi, regional, id, tempSpiner;
     private boolean find, show;
+    private int imgsource_pilihan;
 
     private String namaKebun;
     private long hargaKilo;
@@ -54,6 +55,7 @@ public class ListBuahActivity extends AppCompatActivity {
     private HargaBarang hargaBarang ;
     private DaftarDaerah daftarDaerah;
 
+    public List<Integer> imgsource = new ArrayList<>();
     private List<DaftarKebun> kebunList = new ArrayList<DaftarKebun>();
     private List<HargaBarang> hargaList = new ArrayList<HargaBarang>();
     private List<DaftarDaerah> namaDaerah = new ArrayList<DaftarDaerah>();
@@ -90,6 +92,7 @@ public class ListBuahActivity extends AppCompatActivity {
                 bundle.putString("pilihankebun", pilihkebun);
                 bundle.putString("idkebun", pilihankKebun);
                 bundle.putString("pilihanBuah", pilihanBuah);
+                bundle.putInt("pilihanImg", imgsource.get(i));
                 Intent gotoListBuah = new Intent(ListBuahActivity.this, DetailKebunActivity.class);
                 gotoListBuah.putExtras(bundle);
                 startActivity(gotoListBuah);
@@ -145,7 +148,7 @@ public class ListBuahActivity extends AppCompatActivity {
                 if (hargaList != null)
                     hargaList.clear();
 
-                adapter = new DaftarKebunViewAdapter(ListBuahActivity.this, kebunList, hargaList);
+                adapter = new DaftarKebunViewAdapter(ListBuahActivity.this, kebunList, hargaList,imgsource);
                 gv_daftarKebun.setAdapter(adapter);
 
                 databaseProvinsi.child("Barang").addValueEventListener(new ValueEventListener() {
@@ -162,8 +165,6 @@ public class ListBuahActivity extends AppCompatActivity {
                             databaseDaerah.child("Barang").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-
-
 
                                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
@@ -190,7 +191,7 @@ public class ListBuahActivity extends AppCompatActivity {
 
                                                     int sum = kebunList.size();
                                                     for (int a = 0; a < sum; a++) {
-                                                        adapter = new DaftarKebunViewAdapter(ListBuahActivity.this, kebunList, hargaList);
+                                                        adapter = new DaftarKebunViewAdapter(ListBuahActivity.this, kebunList, hargaList,imgsource);
                                                         gv_daftarKebun.setAdapter(adapter);
 
                                                     }
@@ -235,12 +236,24 @@ public class ListBuahActivity extends AppCompatActivity {
     }
 
     private void image() {
-        if (pilihanBuah.equals("Alpukat"))
+        if (pilihanBuah.equals("Alpukat")) {
+            imgsource.clear();
+            imgsource.add(0,R.drawable.alpukat1);
+            imgsource.add(1,R.drawable.alpukat2);
             img_logoBuah.setImageResource(R.drawable.avocado);
-        else if (pilihanBuah.equals("Anggur"))
+        }
+        else if (pilihanBuah.equals("Anggur")) {
+            imgsource.clear();
+            imgsource.add(0,R.drawable.anggur1);
+            imgsource.add(1,R.drawable.anggur2);
             img_logoBuah.setImageResource(R.drawable.grapes);
-        else if (pilihanBuah.equals("Apel"))
+        }
+        else if (pilihanBuah.equals("Apel")) {
+            imgsource.clear();
+            imgsource.add(0,R.drawable.apel1);
+            imgsource.add(1,R.drawable.apel2);
             img_logoBuah.setImageResource(R.drawable.apple);
+        }
         else if (pilihanBuah.equals("Belimbing"))
             img_logoBuah.setImageResource(R.drawable.starfruit);
         else if (pilihanBuah.equals("Bengkuang"))
@@ -253,8 +266,12 @@ public class ListBuahActivity extends AppCompatActivity {
             img_logoBuah.setImageResource(R.drawable.durian);
         else if (pilihanBuah.equals("Jambu"))
             img_logoBuah.setImageResource(R.drawable.jambu);
-        else if (pilihanBuah.equals("Jeruk"))
-            img_logoBuah.setImageResource(R.drawable.orange);
+        else if (pilihanBuah.equals("Jeruk")) {
+            imgsource.clear();
+            imgsource.add(0,R.drawable.jeruk1);
+            imgsource.add(1,R.drawable.jeruk2);
+            img_logoBuah.setImageResource(R.drawable.img_jeruk);
+        }
         else if (pilihanBuah.equals("Kelapa"))
             img_logoBuah.setImageResource(R.drawable.coconut);
         else if (pilihanBuah.equals("Kelengkeng"))
@@ -265,20 +282,37 @@ public class ListBuahActivity extends AppCompatActivity {
             img_logoBuah.setImageResource(R.drawable.kurma);
         else if (pilihanBuah.equals("Lemon"))
             img_logoBuah.setImageResource(R.drawable.lemon);
-        else if (pilihanBuah.equals("Leci"))
+        else if (pilihanBuah.equals("Leci")) {
+            imgsource.clear();
+            imgsource.add(0,R.drawable.leci1);
+            imgsource.add(1,R.drawable.leci2);
             img_logoBuah.setImageResource(R.drawable.leci);
-        else if (pilihanBuah.equals("Labu"))
+        }else if (pilihanBuah.equals("Labu"))
             img_logoBuah.setImageResource(R.drawable.pumpkin);
-        else if (pilihanBuah.equals("Mangga"))
+        else if (pilihanBuah.equals("Mangga")) {
+            imgsource.clear();
+            imgsource.add(0,R.drawable.mangga1);
+            imgsource.add(1,R.drawable.mangga2);
             img_logoBuah.setImageResource(R.drawable.mangga);
-        else if (pilihanBuah.equals("Manggis"))
+        }else if (pilihanBuah.equals("Manggis")) {
+            imgsource.clear();
+            imgsource.add(0,R.drawable.manggis1);
+            imgsource.add(1,R.drawable.manggis2);
             img_logoBuah.setImageResource(R.drawable.mangosteen);
-        else if (pilihanBuah.equals("Markisa"))
+        }else if (pilihanBuah.equals("Markisa"))
             img_logoBuah.setImageResource(R.drawable.markisa);
-        else if (pilihanBuah.equals("Melon"))
+        else if (pilihanBuah.equals("Melon")) {
+            imgsource.clear();
+            imgsource.add(0,R.drawable.melon1);
+            imgsource.add(1,R.drawable.melon2);
             img_logoBuah.setImageResource(R.drawable.melon);
-        else if (pilihanBuah.equals("Nanas"))
+        }
+        else if (pilihanBuah.equals("Nanas")) {
+            imgsource.clear();
+            imgsource.add(0,R.drawable.nanas1);
+            imgsource.add(1,R.drawable.nanas2);
             img_logoBuah.setImageResource(R.drawable.pineapple);
+        }
         else if (pilihanBuah.equals("Nangka"))
             img_logoBuah.setImageResource(R.drawable.nangka);
         else if (pilihanBuah.equals("Naga"))
@@ -336,7 +370,6 @@ public class ListBuahActivity extends AppCompatActivity {
         pilihanProvinsi = bundle.getString("pilihanprovinsi");
         regional  = bundle.getString("regional");
         id = bundle.getString("id");
-
 
     }
 }
@@ -396,6 +429,7 @@ class DaftarKebunViewAdapter extends BaseAdapter {
     private Context mContext;
     private Activity activity;
 
+    private List<Integer> imgsource;
     private List<DaftarKebun> kebunList;
     private List<HargaBarang> hargaList;
 
@@ -403,10 +437,11 @@ class DaftarKebunViewAdapter extends BaseAdapter {
     private ArrayAdapter<DaftarKebun> arraylist;
     private LayoutInflater inflater;
 
-    public DaftarKebunViewAdapter(Activity activity, List<DaftarKebun> kebunList, List<HargaBarang> hargaList) {
+    public DaftarKebunViewAdapter(Activity activity, List<DaftarKebun> kebunList, List<HargaBarang> hargaList, List<Integer> imgsource) {
         this.activity = activity;
         this.kebunList = kebunList;
         this.hargaList = hargaList;
+        this.imgsource = imgsource;
     }
 
     @Override
@@ -434,10 +469,10 @@ class DaftarKebunViewAdapter extends BaseAdapter {
         ImageView gambarBuah = (ImageView)itemView.findViewById(R.id.img_itemShop);
 
 
-        tx_priceItem.setText("Rp. "+ hargaList.get(i).getHarga_kilo());
+        tx_priceItem.setText("Rp. "+ hargaList.get(i).getHarga_kilo()+" /Kg");
 
         tx_nameShop.setText(kebunList.get(i).getName());
-        gambarBuah.setImageResource(R.drawable.img_apel);
+        gambarBuah.setImageResource(imgsource.get(i));
 
         return itemView;
     }

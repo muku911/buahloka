@@ -42,7 +42,7 @@ public class DetailKebunActivity extends AppCompatActivity {
     //Data
     private DetailData detailData;
     private Keranjang keranjang;
-
+    private int imgsource;
 
     private Rating ratting;
     private List<Rating> ratingList = new ArrayList<Rating>();
@@ -139,7 +139,7 @@ public class DetailKebunActivity extends AppCompatActivity {
 
                                 String idkutmj = UUID.randomUUID().toString();
                                 long banyak = Long.parseLong(etx_fillKg.getText().toString());
-                                keranjang = new Keranjang(idkutmj, detailData.getId(),banyak, detailData.getHarga_kilo()*banyak);
+                                keranjang = new Keranjang(idkutmj, detailData.getId(),banyak, detailData.getHarga_kilo()*banyak,imgsource);
                                 databaseDetail.child("User").child(user.getUid()).child("Keranjang").child("Item").child(idkutmj).setValue(keranjang);
                                 Toast.makeText(DetailKebunActivity.this, "Telah dipindah kan ke Keranjang Anda", Toast.LENGTH_LONG).show();
 
@@ -226,10 +226,10 @@ public class DetailKebunActivity extends AppCompatActivity {
         pilihanKebun = bundlee.getString("pilihankebun");
         pilihanBuah = bundlee.getString("pilihanBuah");
         idKebun = bundlee.getString("idkebun");
-
+        imgsource = bundlee.getInt("pilihanImg");
 
         tx_judulKebun.setText(pilihanKebun);
-        img_logoBuah.setImageResource(R.drawable.logo_bualoka);
+        img_logoBuah.setImageResource(imgsource);
     }
 
     private void init() {
@@ -244,10 +244,6 @@ public class DetailKebunActivity extends AppCompatActivity {
         tx_promo = (TextView)findViewById(R.id.tx_promo);
         tx_isiDiPesan = (TextView)findViewById(R.id.tx_isiDiPesan);
 
-        img_doc1 = (ImageView)findViewById(R.id.img_doc1);
-        img_doc2 = (ImageView)findViewById(R.id.img_doc2);
-        img_doc3 = (ImageView)findViewById(R.id.img_doc3);
-
         tx_isiLokasiKebun = (TextView)findViewById(R.id.tx_isiLokasiKebun);
         tx_isiTanggalPanenLast = (TextView)findViewById(R.id.tx_isiTanggalPanenLast);
         tx_isiNextPanen = (TextView)findViewById(R.id.tx_isiNextPanen);
@@ -258,7 +254,6 @@ public class DetailKebunActivity extends AppCompatActivity {
 
         tx_isiLastTestWarna = (TextView)findViewById(R.id.tx_isiLastTestWarna);
         tx_isiCodeWarna = (TextView)findViewById(R.id.tx_isiCodeWarna);
-        tx_viewWarna = (TextView)findViewById(R.id.tx_viewWarna);
 
         tx_isiLastTestKematangan = (TextView)findViewById(R.id.tx_isiLastTestKematangan);
         tx_isiKadarAvgGasEtilen = (TextView)findViewById(R.id.tx_isiDiPesan);
@@ -294,15 +289,18 @@ class Favorite{
 class Keranjang{
     String id, id_barang;
     long quantity, harga;
+    long imgsource;
 
     public Keranjang() {
     }
 
-    public Keranjang(String id, String id_barang, long quantity, long harga) {
+    public Keranjang(String id, String id_barang, long quantity, long harga, int imgSource) {
         this.id = id;
         this.id_barang = id_barang;
         this.quantity = quantity;
         this.harga = harga;
+        this.imgsource = (long) imgSource;
+
     }
 
     public String getId() {
@@ -335,6 +333,14 @@ class Keranjang{
 
     public void setHarga(long harga) {
         this.harga = harga;
+    }
+
+    public long getImgsource() {
+        return imgsource;
+    }
+
+    public void setImgsource(long imgsource) {
+        this.imgsource = imgsource;
     }
 }
 

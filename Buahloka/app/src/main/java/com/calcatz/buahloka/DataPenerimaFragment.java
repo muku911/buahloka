@@ -154,36 +154,36 @@ public class DataPenerimaFragment extends Fragment {
             }
         });
 
-        Button button = view.findViewById(R.id.btn_terima);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String alamaat = et_alamat_penerima.getText().toString();
-                String nama = et_nama_penerima.getText().toString();
-
-                List<String> id = new ArrayList<String>();
-                for (int i = 0; i<id_item.size(); i++){
-                    String idTransaksi = UUID.randomUUID().toString();
-                    id.add(idTransaksi);
-                    TransaksiUser transaksiUser = new TransaksiUser(idTransaksi,alamaat,city,id_toko.get(i),nama,province,harga_barang.get(i));
-                    IdBarang idBarang = new IdBarang(id_item.get(i),id_for_barang.get(i),quantity.get(i),harga_barang.get(i));
-                    DatabaseReference dr_post_transaksi = database.getReference();
-                    dr_post_transaksi.child("User").child(user.getUid()).child("Transaksi").child(idTransaksi).setValue(transaksiUser);
-                    dr_post_transaksi.child("User").child(user.getUid()).child("Transaksi").child(idTransaksi).child(id_item.get(i)).setValue(idBarang);
-                    dr_post_transaksi.child("User").child(user.getUid()).child("Transaksi").child(idTransaksi).child(id_item.get(i)).removeValue();
-                }
-
-                for (int i = 0; i<id_item.size(); i++){
-                    DatabaseReference dr_post_transaksi = database.getReference();
-                    dr_post_transaksi.child("User").child(user.getUid()).child("Keranjang").child("Item").child(id_item.get(i)).removeValue();
-                }
-
-                BerandaFragment berandaFragment = new BerandaFragment();
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_view,berandaFragment);
-                fragmentTransaction.commit();
-            }
-        });
+//        Button button = view.findViewById(R.id.btn_terima);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String alamaat = et_alamat_penerima.getText().toString();
+//                String nama = et_nama_penerima.getText().toString();
+//
+//                List<String> id = new ArrayList<String>();
+//                for (int i = 0; i<id_item.size(); i++){
+//                    String idTransaksi = UUID.randomUUID().toString();
+//                    id.add(idTransaksi);
+//                    TransaksiUser transaksiUser = new TransaksiUser(idTransaksi,alamaat,city,id_toko.get(i),nama,province,harga_barang.get(i),"Dipesankan");
+//                    IdBarang idBarang = new IdBarang(id_item.get(i),id_for_barang.get(i),quantity.get(i),harga_barang.get(i),);
+//                    DatabaseReference dr_post_transaksi = database.getReference();
+//                    dr_post_transaksi.child("User").child(user.getUid()).child("Transaksi").child(idTransaksi).setValue(transaksiUser);
+//                    dr_post_transaksi.child("User").child(user.getUid()).child("Transaksi").child(idTransaksi).child(id_item.get(i)).setValue(idBarang);
+//                    dr_post_transaksi.child("User").child(user.getUid()).child("Transaksi").child(idTransaksi).child(id_item.get(i)).removeValue();
+//                }
+//
+//                for (int i = 0; i<id_item.size(); i++){
+//                    DatabaseReference dr_post_transaksi = database.getReference();
+//                    dr_post_transaksi.child("User").child(user.getUid()).child("Keranjang").child("Item").child(id_item.get(i)).removeValue();
+//                }
+//
+//                BerandaFragment berandaFragment = new BerandaFragment();
+//                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.fragment_view,berandaFragment);
+//                fragmentTransaction.commit();
+//            }
+//        });
 
         return view;
     }
@@ -268,12 +268,13 @@ class TransaksiUser{
     List<String> id_item;
     String address_tujuan,city,id_toko,nama_penerima,province,status_pengiriman = "Dipesankan",id;
     int total_harga;
+    long imgsource;
 
     public TransaksiUser(){
 
     }
 
-    public TransaksiUser(String id, String address_tujuan, String city, String id_toko, String nama_penerima, String province, int total_harga){
+    public TransaksiUser(String id, String address_tujuan, String city, String id_toko, String nama_penerima, String province, int total_harga, String status_pengiriman, long img){
         this.id = id;
         this.address_tujuan = address_tujuan;
         this.city = city;
@@ -281,6 +282,8 @@ class TransaksiUser{
         this.nama_penerima = nama_penerima;
         this.province = province;
         this.total_harga = total_harga;
+        this.status_pengiriman = status_pengiriman;
+        this.imgsource = img;
     }
 
     public String getAddress_tujuan(){
@@ -305,6 +308,10 @@ class TransaksiUser{
 
     public String getStatus_pengiriman(){
         return status_pengiriman;
+    }
+
+    public long getImgsource(){
+        return imgsource;
     }
 
     public int getTotal_harga(){

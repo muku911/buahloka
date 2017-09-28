@@ -67,6 +67,7 @@ public class KeranjangFragment extends Fragment{
     List<Barang> l_barang = new ArrayList<Barang>();
     List<String> id_item = new ArrayList<>();
     List<String> id_for_barang = new ArrayList<>();
+    List<Long> imgSource = new ArrayList<>();
 
     String province, city;
     int hartot = 0,panjang;
@@ -144,7 +145,9 @@ public class KeranjangFragment extends Fragment{
                     String id = data.child("id").getValue(String.class);
                     int harga = idBarang.getHarga();
                     int qty = idBarang.getQuantity();
+                    long img = idBarang.getImgsource();
 
+                    imgSource.add(img);
                     id_for_barang.add(barang);
                     quantity.add(qty);
                     harga_barang.add(harga);
@@ -172,10 +175,11 @@ public class KeranjangFragment extends Fragment{
                 for (int i = 0; i<id_item.size(); i++){
                     String idTransaksi = UUID.randomUUID().toString();
                     id.add(idTransaksi);
-                    TransaksiUser transaksiUser = new TransaksiUser(idTransaksi,alamaat,city,id_toko.get(i),nama,province,harga_barang.get(i));
-                    IdBarang idBarang = new IdBarang(id_item.get(i),id_for_barang.get(i),quantity.get(i),harga_barang.get(i));
+                    TransaksiUser transaksiUser = new TransaksiUser(idTransaksi,alamaat,city,id_toko.get(i),nama,province,harga_barang.get(i),"Dipesankan",imgSource.get(i));
+                    IdBarang idBarang = new IdBarang(id_item.get(i),id_for_barang.get(i),quantity.get(i),harga_barang.get(i),imgSource.get(i));
                     DatabaseReference dr_post_transaksi = database.getReference();
                     dr_post_transaksi.child("User").child(user.getUid()).child("Transaksi").child(idTransaksi).setValue(transaksiUser);
+                    dr_post_transaksi.child("Toko").child(id_toko.get(i)).child("Transaksi").child(idTransaksi).setValue(transaksiUser);
                     dr_post_transaksi.child("User").child(user.getUid()).child("Transaksi").child(idTransaksi).child(id_item.get(i)).setValue(idBarang);
                     dr_post_transaksi.child("User").child(user.getUid()).child("Transaksi").child(idTransaksi).child(id_item.get(i)).removeValue();
                 }
@@ -189,6 +193,7 @@ public class KeranjangFragment extends Fragment{
 
         setItem();
 
+        imgSource.clear();
         return view;
     }
 
@@ -280,8 +285,8 @@ public class KeranjangFragment extends Fragment{
                     harga_barang.add(hrg);
 
                     tv_harga_total.setText("Rp. " + String.valueOf(hartot));
-                }
 
+                }
                 setBarang();
             }
 
@@ -365,7 +370,7 @@ public class KeranjangFragment extends Fragment{
     }
 
     private void setLv_Adapter(){
-        KeranjangAdapter keranjangAdapter = new KeranjangAdapter(getActivity(),id_item,nama_barang,nama_toko,quantity,harga_barang);
+        KeranjangAdapter keranjangAdapter = new KeranjangAdapter(getActivity(),id_item,nama_barang,nama_toko,quantity,harga_barang,imgSource);
         lv_item_keranjang.setAdapter(keranjangAdapter);
     }
 }
@@ -402,16 +407,18 @@ class Barang{
 class IdBarang{
     private String id_barang,id_item;
     private int quantity, harga;
+    private long imgsource;
 
     public IdBarang(){
 
     }
 
-    public IdBarang(String id_item, String id_barang, int qty, int harga){
+    public IdBarang(String id_item, String id_barang, int qty, int harga, long imgsource){
         this.id_item = id_item;
         this.id_barang = id_barang;
         this.quantity = qty;
         this.harga = harga;
+        this.imgsource = imgsource;
     }
 
     public int getQuantity(){
@@ -445,6 +452,14 @@ class IdBarang{
     public void setId_barang(String id_barang){
         this.id_barang = id_barang;
     }
+
+    public long getImgsource(){
+        return imgsource;
+    }
+
+    public void setImgsource(long imgsource){
+        this.imgsource = imgsource;
+    }
 }
 
 class KeranjangAdapter extends BaseAdapter{
@@ -453,15 +468,17 @@ class KeranjangAdapter extends BaseAdapter{
     List<String> nama_barang,nama_toko;
     List<Integer> quantity,harga_barang;
     List<String> id_item;
+    List<Long> imgsource;
     private LayoutInflater inflater;
 
-    public KeranjangAdapter(Context context,List<String> id_item, List<String> nama_barang, List<String> nama_toko, List<Integer> quantity, List<Integer> harga_barang){
+    public KeranjangAdapter(Context context,List<String> id_item, List<String> nama_barang, List<String> nama_toko, List<Integer> quantity, List<Integer> harga_barang, List<Long> img){
             this.context = context;
             this.id_item = id_item;
             this.nama_barang = nama_barang;
             this.nama_toko = nama_toko;
             this.quantity = quantity;
             this.harga_barang = harga_barang;
+            this.imgsource = img;
             this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -490,6 +507,7 @@ class KeranjangAdapter extends BaseAdapter{
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference dr_delete = database.getReference();
 
+        ImageView iv_photo_barang = rootView.findViewById(R.id.iv_photo_barang);
         TextView tv_nama_barang = rootView.findViewById(R.id.tv_nama_barang);
         TextView tv_nama_toko = rootView.findViewById(R.id.tv_nama_toko);
         TextView tv_quantity = rootView.findViewById(R.id.tv_quantity);
@@ -499,6 +517,7 @@ class KeranjangAdapter extends BaseAdapter{
         tv_nama_toko.setText(nama_toko.get(i));
         tv_quantity.setText(String.valueOf(quantity.get(i))+" Kg");
         tv_harga_barang.setText("Rp "+String.valueOf(harga_barang.get(i)));
+        iv_photo_barang.setImageResource(imgsource.get(i).intValue());
 
         ImageView iv_delete = rootView.findViewById(R.id.iv_delete);
         iv_delete.setOnClickListener(new View.OnClickListener() {

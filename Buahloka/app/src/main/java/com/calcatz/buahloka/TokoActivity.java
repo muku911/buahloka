@@ -24,40 +24,18 @@ import android.widget.Button;
 public class TokoActivity extends AppCompatActivity
         {
 
-    Button btnreview;
-    Button btnlist;
-    Button btnpesanan;
+    Button btn_lihat_pesanan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toko);
 
-        btnreview = (Button) findViewById(R.id.btnReview);
-        btnlist = (Button) findViewById(R.id.btnList);
-        btnpesanan = (Button) findViewById(R.id.btnPesanan);
-
-        btnlist.setOnClickListener(new View.OnClickListener() {
+        btn_lihat_pesanan = (Button) findViewById(R.id.btn_lihat_pesanan);
+        btn_lihat_pesanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), ListJualanActivity.class);
-                startActivity(i);
-            }
-        });
-
-        btnreview.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), DataKebun.class);
-                startActivity(i);
-            }
-        });
-
-        btnpesanan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), TambahProduk.class);
-                startActivity(i);
+                startActivity(new Intent(TokoActivity.this,Pesanan.class));
             }
         });
     }

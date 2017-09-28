@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Desanti1</string>
+
+    <string-array name="kelamin">
+        <item>Laki-laki</item>
+        <item>Perempuan</item>
+    </string-array>
+
+    <string-array name="agama">
+        <item>Islam</item>
+        <item>Katolik</item>
+        <item>Kristen</item>
+        <item>Buddha</item>
+        <item>Hindu</item>
+        <item>Konghuchu</item>
+        <item>Lainnya</item>
+    </string-array>
+
+    <string-array name="status">
+        <item>Sudah Menikah</item>
+        <item>Belum Menikah</item>
+    </string-array>
+</resources>

@@ -269,7 +269,7 @@ class NamabuahViewAdapter extends BaseAdapter{
         else if (namaBuah.get(i).getName().equals("Jambu"))
             gambarBuah.setImageResource(R.drawable.jambu);
         else if (namaBuah.get(i).getName().equals("Jeruk"))
-            gambarBuah.setImageResource(R.drawable.orange);
+            gambarBuah.setImageResource(R.drawable.img_jeruk);
         else if (namaBuah.get(i).getName().equals("Kelapa"))
             gambarBuah.setImageResource(R.drawable.coconut);
         else if (namaBuah.get(i).getName().equals("Kelengkeng"))
